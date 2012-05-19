@@ -1,4 +1,4 @@
-package org.iblogger.action;
+package org.iblogger.dao;
 
 import java.util.List;
 
@@ -7,11 +7,10 @@ import org.iblogger.model.Product;
 /**
  * 
  * @title
- * 产品搜索页面信息
  * @author ForYY
- * @version 1.0 May 18, 2012 11:48:29 PM
+ * @version 1.0 May 19, 2012 12:59:12 PM
  */
-public interface ProductAction extends Action{
+public interface TaskAction extends Action {
 
 	/**
 	 * 
@@ -36,5 +35,4 @@ public interface ProductAction extends Action{
 	 * @param id
 	 * @return
 	 */
-	public Product queryProduct(int id);
-}
+	public Product queryProduct(int id);}

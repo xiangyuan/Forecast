@@ -1,4 +1,4 @@
-package org.iblogger.action;
+package org.iblogger.dao;
 /**
  * 
  * @title
