@@ -11,7 +11,7 @@ import org.iblogger.model.Product;
  * @author ForYY
  * @version 1.0 May 18, 2012 11:48:29 PM
  */
-public interface ProductAction extends Action{
+public interface ProductDao extends Dao{
 
 	/**
 	 * 

@@ -35,13 +35,13 @@ drop table if exists FactorCharacter;
 /*==============================================================*/
 create table FactorSystem
 (
-   FactorCode           int not null comment '主键',
+   FactorCode           int auto_increment comment '主键',
    TaskCode             int comment '主键',
    FactorName           varchar(50),
    BelongFactorCode     int comment '若为最上层，该值为0',
    BelongTaskCode       int comment '外键',
    IsLeaf               int,
-   primary key (FactorCode)
+   primary key (FactorCode) 
 );
 
 /*==============================================================*/
@@ -49,9 +49,9 @@ create table FactorSystem
 /*==============================================================*/
 create table FactorWeight
 (
-   FactorCode           int not null,
+   FactorCode           int auto_increment,
    WeightVal            float,
-   primary key (FactorCode)
+   primary key (FactorCode) 
 );
 
 /*==============================================================*/
@@ -71,7 +71,7 @@ create table PrdctExpertData
 /*==============================================================*/
 create table Product
 (
-   PrdctCode            int not null comment '主键，按添加次序逐一递增',
+   PrdctCode            int auto_increment comment '主键，按添加次序逐一递增',
    CpnCode              int comment '外键，定义见企业基本信息表',
    PrdctSequence        int comment '本企业内产品排名',
    PrdctKindCode        int comment '外键，定义见产品明细类',
@@ -81,7 +81,7 @@ create table Product
    PrdctPicturePath     varchar(50),
    PrdctIntro           varchar(50),
    SubmitTime           datetime,
-   primary key (PrdctCode)
+   primary key (PrdctCode) 
 );
 
 /*==============================================================*/
@@ -114,9 +114,9 @@ create table ProductResult
 /*==============================================================*/
 create table ProductType
 (
-   PrdctTypeCode        int not null comment '主键',
+   PrdctTypeCode        int auto_increment comment '主键',
    PrdctTypeName        varchar(60),
-   primary key (PrdctTypeCode)
+   primary key (PrdctTypeCode) 
 );
 
 /*==============================================================*/
@@ -124,7 +124,7 @@ create table ProductType
 /*==============================================================*/
 create table Task
 (
-   TaskCode             int not null comment '主键',
+   TaskCode             int auto_increment comment '主键',
    TaskName             varchar(30),
    TaskIntro            varchar(100),
    CEPrdctTypeCode      int,
@@ -139,7 +139,7 @@ create table Task
             4:模糊综合评价方法',
    CreateDate           datetime,
    UserID               int comment '创建用户账号',
-   primary key (TaskCode)
+   primary key (TaskCode) 
 );
 
 /*==============================================================*/
@@ -157,10 +157,10 @@ create table TaskCEProduct
 /*==============================================================*/
 create table TaskResult
 (
-   TaskCode             int not null,
+   TaskCode             int auto_increment,
    ProductCode          int comment '主键',
    ReportURL            varchar(80),
-   primary key (TaskCode)
+   primary key (TaskCode) 
 );
 
 /*==============================================================*/
@@ -168,7 +168,7 @@ create table TaskResult
 /*==============================================================*/
 create table Users
 (
-   UserID               int not null comment '主键，用户注册时填写，并进行唯一性检查',
+   UserID               int auto_increment comment '主键，用户注册时填写，并进行唯一性检查',
    UserPassword         varchar(20) comment '注册时填写',
    UserType             int comment '1:超级管理员,2:企业',
    UserName             varchar(25),
@@ -179,7 +179,7 @@ create table Users
    IsPast               int,
    PassDate             datetime,
    NotPassResponse      varchar(20),
-   primary key (UserID)
+   primary key (UserID) 
 );
 
 /*==============================================================*/
@@ -198,7 +198,7 @@ create table WeightExpertData
 /*==============================================================*/
 create table FactorCharacter
 (
-   FacorCode            int not null comment '主键',
+   FacorCode            int auto_increment comment '主键',
    PrdctTypeCode        int comment '主键',
    FactorUnit           varchar(4),
    IsQualitative        int,

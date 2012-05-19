@@ -23,7 +23,7 @@ public final class Dbutils {
 	/**
 	 * @return
 	 */
-	public final Connection getConn() {
+	public static final Connection getConn() {
 		Connection conn = null;
 		try {
 			Class.forName(driverName);
@@ -42,7 +42,7 @@ public final class Dbutils {
 	 * @param sql
 	 * @return
 	 */
-	public final PreparedStatement getPtmt(Connection conn,String sql) {
+	public static final PreparedStatement getPtmt(Connection conn,String sql) {
 		PreparedStatement ptmt = null;
 		try {
 			ptmt = conn.prepareStatement(sql);

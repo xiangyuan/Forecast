@@ -1,79 +1,154 @@
-
-<%@ page language="java" import="java.util.*" pageEncoding="gbk"%>
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
-			
+
 	//String currentUser = session.getAttribute("UserId").toString();
-	
 %>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
-	<head>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Internet Dreams</title>
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/css/screen.css" type="text/css"
+	media="screen" title="default" />
+<!--  jquery core -->
+<script src="js/jquery/jquery-1.4.1.min.js" type="text/javascript"></script>
 
-		<title>Login Page</title>
-	</head>
+<!-- Custom jquery scripts -->
+<script src="js/jquery/custom_jquery.js" type="text/javascript"></script>
 
-	<body>
-		<%
-			String info = request.getParameter("info");
-			if (!("".equals(info) || info == null))
-				out.println(info);
-		%>
-		<p>
-			<a href="<%=basePath%>register/register.jsp">ÓÃ»§×¢²á</a>|ÓÃ»§µÇÂ¼
-		</p>
-		<form action="login2.jsp" method="post">
-			<table>
-				<tr>
-					<td style="text-align: right">
-						ÓÃ»§Ãû
-					</td>
-					<td>
-						<input type="text" name="userName" />
+<!-- MUST BE THE LAST SCRIPT IN <HEAD></HEAD></HEAD> png fix -->
+<script src="js/jquery/jquery.pngFix.pack.js" type="text/javascript"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$(document).pngFix();
+	});
 
-					</td>
-				</tr>
-				<tr>
-					<td style="text-align: right">
-						ÃÜÂë
-					</td>
-					<td>
-						<input type="text" name="password" />
-					</td>
-				</tr>
-				<%-- <tr>
-					<td style="text-align: right">
-						ÑéÖ¤Âë
-					</td>
-					<td>
-						<input type="text" name="inputCertCode" cssStyle="width:100px" />
-						<img id="certfCode"
-							src="<%=basePath%>pagefunction/makeCertPic.jsp"
-							style="width: 60px; height: 25px">
-						<a href="" onclick="reloadcode();">¿´²»Çå,»»Ò»ÕÅ</a>
-					</td>
-				</tr> --%>
-				<tr>
-					<td style="text-align: left">
-						<input type="submit" value="µÇÂ¼" />
-					</td>
-					<td style="text-align: left">
-						<input type="reset" value="È¡Ïû" />
-					</td>
-				</tr>
-			</table>
-		</form>
-		<label id="errorInfo" style="color: red"></label>
-	</body>
+	function userLogin() {
+		var uername = document.getElementById("username").value;
+		var password = document.getElementById("password").value;
+		if (uername == '') {
+			alert("please enter UserName ");
+			return;
+		}
+		if (password == '') {
+			alert("please enter the password");
+			return;
+		}
+		document.myForm.submit();
 
-	<script language="JavaScript">
-function reloadcode(){
-var verify=document.getElementById("certfCode");
-verify.setAttribute("src","<%=basePath%>pagefunction/makeCertPic.jsp");
-		//ÕâÀï±ØĞë¼ÓÈëËæ»úÊı²»È»µØÖ·ÏàÍ¬ÎÒ·¢ÖØĞÂ¼ÓÔØ
+	}
+	
+	function userRegist() {
+		var email = document.getElementById("email").value;
+		var uername = document.getElementById("regstName").value;
+		var password = document.getElementById("regstPwd").value;
+		if (email == '') {
+			alert("please enter Email address ");
+			return;
+		}
+		if (uername == '') {
+			alert("please enter UserName ");
+			return;
+		}
+		if (password == '') {
+			alert("please enter the password");
+			return;
+		}
+		document.myRegistForm.submit();
 	}
 </script>
+</head>
+<body id="login-bg">
+
+	<!-- Start: login-holder -->
+	<div id="login-holder">
+
+		<!-- start logo -->
+		<div id="logo-login">
+			<a href="index.html"><img src="images/shared/logo.png"
+				width="156" height="40" alt="" /> </a>
+		</div>
+		<!-- end logo -->
+
+		<div class="clear"></div>
+
+		<!--  start loginbox ................................................................................. -->
+		<div id="loginbox">
+
+			<!--  start login-inner -->
+			<div id="login-inner">
+				<form name="myForm" action="userAction" method="post">
+					<table border="0" cellpadding="0" cellspacing="0">
+						<tr>
+							<th>ç”¨æˆ·å</th>
+							<td><input type="text" name="username" id="username"
+								value="è¯·è¾“å…¥ç”¨æˆ·å" onfocus="this.value=''" class="login-inp" /></td>
+						</tr>
+						<tr>
+							<th>å¯† ç </th>
+							<td><input type="password" name="password" id="password"
+								class="login-inp" /></td>
+						</tr>
+						<!-- <tr>
+						<th></th>
+						<td valign="top"><input type="checkbox" class="checkbox-size"
+							id="login-check" /><label for="login-check">Remember me</label>
+						</td>
+					</tr>
+					
+ -->
+						<tr></tr>
+						<tr>
+							<th></th>
+							<td><input type="button" class="submit-login"
+								onclick="javascript:userLogin();" /></td>
+						</tr>
+					</table>
+				</form>
+			</div>
+			<!--  end login-inner -->
+			<div class="clear"></div>
+			<a href="" class="forgot-pwd">æ³¨å†Œ</a>
+		</div>
+		<!--  end loginbox -->
+
+		<!--  start forgotbox ................................................................................... -->
+		<div id="forgotbox">
+			<!--  start forgot-inner -->
+			<div id="forgot-inner">
+			<form name="myRegistForm" action="userAction?action=regist" method="post">
+				<table border="0" cellpadding="0" cellspacing="0">
+					<tr>
+						<th>é‚®  ç®±</th>
+						<td><input type="text" id="email" name="email" value="" class="login-inp" /></td>
+					</tr>
+					<tr>
+						<th>ç”¨æˆ·å</th>
+						<td><input type="text" id="regstName" name="regstName" value="" class="login-inp" /></td>
+					</tr>
+					<tr>
+						<th>å¯†  ç </th>
+						<td><input type="password" id="regstPwd" name="regstPwd" value="" class="login-inp" /></td>
+					</tr>
+					<tr>
+						<th></th>
+						<td><input type="button" class="submit-login" onclick="javascrip:userRegist();"/></td>
+					</tr>
+				</table>
+				</form>
+			</div>
+			<!--  end forgot-inner -->
+			<div class="clear"></div>
+			<a href="" class="back-login">Back to login</a>
+		</div>
+		<!--  end forgotbox -->
+
+	</div>
+	<!-- End: login-holder -->
+</body>
 </html>

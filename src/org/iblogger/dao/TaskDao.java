@@ -11,7 +11,7 @@ import org.iblogger.model.Comment;
  * @author ForYY
  * @version 1.0 May 19, 2012 12:59:12 PM
  */
-public interface TaskAction extends Action {
+public interface TaskDao extends Dao {
 
 	/**
 	 * 
