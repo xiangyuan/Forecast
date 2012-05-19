@@ -2,11 +2,12 @@ package org.iblogger.dao;
 
 import java.util.List;
 
-import org.iblogger.model.Product;
+import org.iblogger.model.Comment;
 
 /**
  * 
  * @title
+ * 	查看某一个评价任务信息
  * @author ForYY
  * @version 1.0 May 19, 2012 12:59:12 PM
  */
@@ -16,23 +17,23 @@ public interface TaskAction extends Action {
 	 * 
 	 * @return
 	 */
-	public List<Product> queryProduct();
+	public List<Comment> queryTask();
 	/**
 	 * 
-	 * @param prdctId
+	 * @param taskId
 	 * @return
 	 */
-	public boolean deleteProduct(int prdctId);
+	public boolean deleteTask(int taskId);
 	/**
-	 *  update the product information
+	 * 查看某一个评价任务信息
 	 * @param product
 	 * @return
 	 */
-	public boolean updateProduct(Product product);
+	public boolean updateTask(Comment task);
 	
 	/**
-	 * 查看某一个产品
+	 * 查看某一个评价任务信息
 	 * @param id
 	 * @return
 	 */
-	public Product queryProduct(int id);}
+	public Comment queryTask(int id);}

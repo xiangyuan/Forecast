@@ -35,11 +35,11 @@ drop table if exists FactorCharacter;
 /*==============================================================*/
 create table FactorSystem
 (
-   FactorCode           int not null comment 'Ö÷¼ü',
-   TaskCode             int comment 'Ö÷¼ü',
-   FactorName           varchar(1),
-   BelongFactorCode     int comment 'ÈôÎª×îÉÏ²ã£¬¸ÃÖµÎª0',
-   BelongTaskCode       int comment 'Íâ¼ü',
+   FactorCode           int not null comment 'ä¸»é”®',
+   TaskCode             int comment 'ä¸»é”®',
+   FactorName           varchar(50),
+   BelongFactorCode     int comment 'è‹¥ä¸ºæœ€ä¸Šå±‚ï¼Œè¯¥å€¼ä¸º0',
+   BelongTaskCode       int comment 'å¤–é”®',
    IsLeaf               int,
    primary key (FactorCode)
 );
@@ -62,7 +62,7 @@ create table PrdctExpertData
    ProductCode          int not null,
    FactorCode           int not null,
    ExpertCode           int not null,
-   QualitativeRank      char(1) comment 'ÓÅ£¬Á¼£¬ÖĞ£¬²î£¬ºÜ²î',
+   QualitativeRank      varchar(4) comment 'ä¼˜ï¼Œè‰¯ï¼Œä¸­ï¼Œå·®ï¼Œå¾ˆå·®',
    primary key (ProductCode, FactorCode, ExpertCode)
 );
 
@@ -71,15 +71,15 @@ create table PrdctExpertData
 /*==============================================================*/
 create table Product
 (
-   PrdctCode            int not null comment 'Ö÷¼ü£¬°´Ìí¼Ó´ÎĞòÖğÒ»µİÔö',
-   CpnCode              int comment 'Íâ¼ü£¬¶¨Òå¼ûÆóÒµ»ù±¾ĞÅÏ¢±í',
-   PrdctSequence        int comment '±¾ÆóÒµÄÚ²úÆ·ÅÅÃû',
-   PrdctKindCode        int comment 'Íâ¼ü£¬¶¨Òå¼û²úÆ·Ã÷Ï¸Àà',
-   PrdctName            varchar(1),
-   PrdctModel           varchar(1),
-   PrdctPara            varchar(1),
-   PrdctPicturePath     varchar(1),
-   PrdctIntro           varchar(1),
+   PrdctCode            int not null comment 'ä¸»é”®ï¼ŒæŒ‰æ·»åŠ æ¬¡åºé€ä¸€é€’å¢',
+   CpnCode              int comment 'å¤–é”®ï¼Œå®šä¹‰è§ä¼ä¸šåŸºæœ¬ä¿¡æ¯è¡¨',
+   PrdctSequence        int comment 'æœ¬ä¼ä¸šå†…äº§å“æ’å',
+   PrdctKindCode        int comment 'å¤–é”®ï¼Œå®šä¹‰è§äº§å“æ˜ç»†ç±»',
+   PrdctName            varchar(50),
+   PrdctModel           varchar(50),
+   PrdctPara            varchar(50),
+   PrdctPicturePath     varchar(50),
+   PrdctIntro           varchar(50),
    SubmitTime           datetime,
    primary key (PrdctCode)
 );
@@ -92,7 +92,7 @@ create table ProductFactor
    ProductCode          int not null,
    FactorCode           int not null,
    QuantitativeVal      float,
-   QuanlitativeRank     char(1) comment 'ÓÅ£¬Á¼£¬ÖĞ£¬²î£¬ºÜ²î',
+   QuanlitativeRank     varchar(5) comment 'ä¼˜ï¼Œè‰¯ï¼Œä¸­ï¼Œå·®ï¼Œå¾ˆå·®',
    StandardizedVal      float,
    NoDimensionVal       float,
    primary key (ProductCode, FactorCode)
@@ -114,8 +114,8 @@ create table ProductResult
 /*==============================================================*/
 create table ProductType
 (
-   PrdctTypeCode        int not null comment 'Ö÷¼ü',
-   PrdctTypeName        varchar(1),
+   PrdctTypeCode        int not null comment 'ä¸»é”®',
+   PrdctTypeName        varchar(60),
    primary key (PrdctTypeCode)
 );
 
@@ -124,21 +124,21 @@ create table ProductType
 /*==============================================================*/
 create table Task
 (
-   TaskCode             int not null comment 'Ö÷¼ü',
-   TaskName             varchar(1),
-   TaskIntro            varchar(1),
+   TaskCode             int not null comment 'ä¸»é”®',
+   TaskName             varchar(30),
+   TaskIntro            varchar(100),
    CEPrdctTypeCode      int,
-   CreateWeightWay      int comment '1:AHP·¨
-            2:DELPHI·¨
-            3:Ö±½Ó¸³È¨
-            4£ºÖğ¶Ô±È½Ï·¨
+   CreateWeightWay      int comment '1:AHPæ³•
+            2:DELPHIæ³•
+            3:ç›´æ¥èµ‹æƒ
+            4ï¼šé€å¯¹æ¯”è¾ƒæ³•
             4:',
-   ComposeWay           int comment '1:ÏßĞÔ¼ÓÈ¨ºÍ·¨
-            2:ÀíÏëµã·¨
-            3:³Ë»ıºÏ³É·¨
-            4:Ä£ºı×ÛºÏÆÀ¼Û·½·¨',
+   ComposeWay           int comment '1:çº¿æ€§åŠ æƒå’Œæ³•
+            2:ç†æƒ³ç‚¹æ³•
+            3:ä¹˜ç§¯åˆæˆæ³•
+            4:æ¨¡ç³Šç»¼åˆè¯„ä»·æ–¹æ³•',
    CreateDate           datetime,
-   UserID               char(1) comment '´´½¨ÓÃ»§ÕËºÅ',
+   UserID               int comment 'åˆ›å»ºç”¨æˆ·è´¦å·',
    primary key (TaskCode)
 );
 
@@ -147,8 +147,8 @@ create table Task
 /*==============================================================*/
 create table TaskCEProduct
 (
-   TaskCode             int not null comment 'Ö÷¼ü',
-   ProductCode          int not null comment 'Ö÷¼ü',
+   TaskCode             int not null comment 'ä¸»é”®',
+   ProductCode          int not null comment 'ä¸»é”®',
    primary key (TaskCode, ProductCode)
 );
 
@@ -158,8 +158,8 @@ create table TaskCEProduct
 create table TaskResult
 (
    TaskCode             int not null,
-   ProductCode          int comment 'Ö÷¼ü',
-   ReportURL            varchar(1),
+   ProductCode          int comment 'ä¸»é”®',
+   ReportURL            varchar(80),
    primary key (TaskCode)
 );
 
@@ -168,17 +168,17 @@ create table TaskResult
 /*==============================================================*/
 create table Users
 (
-   UserID               char(1) not null comment 'Ö÷¼ü£¬ÓÃ»§×¢²áÊ±ÌîĞ´£¬²¢½øĞĞÎ¨Ò»ĞÔ¼ì²é',
-   UserPassword         char(1) comment '×¢²áÊ±ÌîĞ´',
-   UserType             int comment '1:³¬¼¶¹ÜÀíÔ±,2:ÆóÒµ',
-   UserName             varchar(1),
-   UserCompany          varchar(1),
-   UserPhone            varchar(1),
-   UserEmail            varchar(1),
+   UserID               int not null comment 'ä¸»é”®ï¼Œç”¨æˆ·æ³¨å†Œæ—¶å¡«å†™ï¼Œå¹¶è¿›è¡Œå”¯ä¸€æ€§æ£€æŸ¥',
+   UserPassword         varchar(20) comment 'æ³¨å†Œæ—¶å¡«å†™',
+   UserType             int comment '1:è¶…çº§ç®¡ç†å‘˜,2:ä¼ä¸š',
+   UserName             varchar(25),
+   UserCompany          varchar(25),
+   UserPhone            varchar(30),
+   UserEmail            varchar(25),
    RegDate              datetime,
    IsPast               int,
    PassDate             datetime,
-   NotPassResponse      varchar(1),
+   NotPassResponse      varchar(20),
    primary key (UserID)
 );
 
@@ -198,17 +198,17 @@ create table WeightExpertData
 /*==============================================================*/
 create table FactorCharacter
 (
-   FacorCode            int not null comment 'Ö÷¼ü',
-   PrdctTypeCode        int comment 'Ö÷¼ü',
-   FactorUnit           char(1),
+   FacorCode            int not null comment 'ä¸»é”®',
+   PrdctTypeCode        int comment 'ä¸»é”®',
+   FactorUnit           varchar(4),
    IsQualitative        int,
-   FactorType           int comment '0:¼«´óĞÍ
-            1:¼«Ğ¡ĞÍ
-            2:¹Ì¶¨ĞÍ
-            3:Çø¼äĞÍ',
-   BestValue            float comment '¹Ì¶¨ĞÍÖ¸±êĞèÖµ',
-   BestLowValue         float comment 'Çø¼äĞÍÖ¸±êĞèÖµ',
-   BestUpValue          float comment 'Çø¼äĞÍÖ¸±êĞèÖµ',
+   FactorType           int comment '0:æå¤§å‹
+            1:æå°å‹
+            2:å›ºå®šå‹
+            3:åŒºé—´å‹',
+   BestValue            float comment 'å›ºå®šå‹æŒ‡æ ‡éœ€å€¼',
+   BestLowValue         float comment 'åŒºé—´å‹æŒ‡æ ‡éœ€å€¼',
+   BestUpValue          float comment 'åŒºé—´å‹æŒ‡æ ‡éœ€å€¼',
    min                  float,
    max                  float,
    StandardizeWay       int,
