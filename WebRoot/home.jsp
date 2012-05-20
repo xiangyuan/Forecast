@@ -3,8 +3,8 @@
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
-			+ request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
+	+ request.getServerName() + ":" + request.getServerPort()
+	+ path + "/";
 
 	//String currentUser = session.getAttribute("UserId").toString();
 %>
@@ -181,8 +181,7 @@
 			<!-- start logo -->
 			<div id="logo">
 				<a href=""><img src="images/shared/logo.png" width="156"
-					height="40" alt="" />
-				</a>
+					height="40" alt="" /> </a>
 			</div>
 			<!-- end logo -->
 
@@ -228,8 +227,7 @@
 				<div class="nav-divider">&nbsp;</div>
 				<a href="" id="logout"><img
 					src="images/shared/nav/nav_logout.gif" width="64" height="14"
-					alt="" />
-				</a>
+					alt="" /> </a>
 				<div class="clear">&nbsp;</div>
 
 				<!--  start account-content -->
@@ -278,78 +276,61 @@
 		-->
 
 					<ul class="current">
-						<li><a href="#nogo"><b>产品</b>
-							<!--[if IE 7]><!-->
-						</a>
-						<!--<![endif]--> <!--[if lte IE 6]><table><tr><td><![endif]-->
+						<li><a href="#nogo"><b>产品</b> <!--[if IE 7]><!--> </a> <!--<![endif]-->
+							<!--[if lte IE 6]><table><tr><td><![endif]-->
 							<div class="select_sub show">
 								<ul class="sub">
-									<li class="sub_show"><a href="#nogo">查看所有产品</a>
-									</li>
-									<li><a href="#nogo">添加产品</a>
-									</li>
-									<li><a href="#nogo">删除产品</a>
-									</li>
+									<li class="sub_show"><a href="#nogo">查看所有产品</a></li>
+									<li><a href="<%=basePath%>postproduct.jsp">添加产品</a></li>
 								</ul>
-							</div> <!--[if lte IE 6]></td></tr></table></a><![endif]--></li>
+							</div> <!--[if lte IE 6]></td></tr></table></a><![endif]-->
+						</li>
 					</ul>
 
 					<div class="nav-divider">&nbsp;</div>
 
 					<ul class="select">
-						<li><a href="#nogo"><b>评价任务</b>
-							<!--[if IE 7]><!-->
-						</a>
-						<!--<![endif]--> <!--[if lte IE 6]><table><tr><td><![endif]-->
+						<li><a href="#nogo"><b>评价任务</b> <!--[if IE 7]><!--> </a> <!--<![endif]-->
+							<!--[if lte IE 6]><table><tr><td><![endif]-->
 							<div class="select_sub">
 								<ul class="sub">
-									<li><a href="#nogo">评价任务</a>
-									</li>
-									<li><a href="#nogo">创建评价任务</a>
-									</li>
-									<li><a href="#nogo">删除评价任务</a>
-									</li>
+									<li><a href="#nogo">评价任务</a></li>
+									<li><a href="#nogo">创建评价任务</a></li>
+									<li><a href="#nogo">删除评价任务</a></li>
 								</ul>
-							</div> <!--[if lte IE 6]></td></tr></table></a><![endif]--></li>
+							</div> <!--[if lte IE 6]></td></tr></table></a><![endif]-->
+						</li>
 					</ul>
 
 					<div class="nav-divider">&nbsp;</div>
 
 					<ul class="select">
-						<li><a href="#nogo"><b>综合评测</b>
-							<!--[if IE 7]><!-->
-						</a>
-						<!--<![endif]--> <!--[if lte IE 6]><table><tr><td><![endif]-->
+						<li><a href="#nogo"><b>综合评测</b> <!--[if IE 7]><!--> </a> <!--<![endif]-->
+							<!--[if lte IE 6]><table><tr><td><![endif]-->
 							<div class="select_sub">
 								<ul class="sub">
-									<li><a href="#nogo">Clients Details 1</a>
-									</li>
-									<li><a href="#nogo">Clients Details 2</a>
-									</li>
-									<li><a href="#nogo">Clients Details 3</a>
-									</li>
+									<li><a href="#nogo">Clients Details 1</a></li>
+									<li><a href="#nogo">Clients Details 2</a></li>
+									<li><a href="#nogo">Clients Details 3</a></li>
 
 								</ul>
-							</div> <!--[if lte IE 6]></td></tr></table></a><![endif]--></li>
+							</div> <!--[if lte IE 6]></td></tr></table></a><![endif]-->
+						</li>
 					</ul>
 
 					<div class="nav-divider">&nbsp;</div>
 
 					<ul class="select">
-						<li><a href="#nogo"><b>报告<b>
-										<!--[if IE 7]><!-->
-						</a>
-						<!--<![endif]--> <!--[if lte IE 6]><table><tr><td><![endif]-->
+						<li><a href="#nogo"><b>报告<b> <!--[if IE 7]><!-->
+						</a> <!--<![endif]--> <!--[if lte IE 6]><table><tr><td><![endif]-->
 							<div class="select_sub">
 								<ul class="sub">
-									<li><a href="#nogo">News details 1</a>
-									</li>
-									<li><a href="#nogo">News details 2</a>
-									</li>
-									<li><a href="#nogo">News details 3</a>
-									</li>
+									<li><a href="#nogo">News details 1</a></li>
+									<li><a href="#nogo">News details 2</a></li>
+									<li><a href="#nogo">News details 3</a></li>
 								</ul>
-							</div> <!--[if lte IE 6]></td></tr></table></a><![endif]--></li>
+							</div> <!--[if lte IE 6]></td></tr></table></a><![endif]-->
+						</li>
 					</ul>
 					<div class="nav-divider">&nbsp;</div>
 					<%
@@ -357,10 +338,9 @@
 						String t = user == null ? "" : user.getUserName();
 					%>
 					<ul class="select">
-						<li><a href="#nogo"><b>用户:<%=t%><b>
-										<!--[if IE 7]><!-->
-						</a>
-						<!--<![endif]--> <!--[if lte IE 6]><table><tr><td><![endif]--></li>
+						<li><a href="#nogo"><b>用户:<%=t%><b> <!--[if IE 7]><!-->
+						</a> <!--<![endif]--> <!--[if lte IE 6]><table><tr><td><![endif]-->
+						</li>
 					</ul>
 
 					<div class="clear"></div>
@@ -393,15 +373,13 @@
 				<tr>
 					<th rowspan="3" class="sized"><img
 						src="images/shared/side_shadowleft.jpg" width="20" height="300"
-						alt="" />
-					</th>
+						alt="" /></th>
 					<th class="topleft"></th>
 					<td id="tbl-border-top">&nbsp;</td>
 					<th class="topright"></th>
 					<th rowspan="3" class="sized"><img
 						src="images/shared/side_shadowright.jpg" width="20" height="300"
-						alt="" />
-					</th>
+						alt="" /></th>
 				</tr>
 				<tr>
 					<td id="tbl-border-left"></td>
@@ -417,13 +395,14 @@
 									<table border="0" width="100%" cellpadding="0" cellspacing="0"
 										id="product-table">
 										<tr>
-											<th class="table-header-check"><a id="toggle-all"></a>
+											<%--<th class="table-header-check"><a id="toggle-all"></a>
+											</th>
+											--%>
+											<th class="table-header-repeat line-left minwidth-1"><a
+												href="">Last Name</a>
 											</th>
 											<th class="table-header-repeat line-left minwidth-1"><a
-												href="">Last Name</a></th>
-											<th class="table-header-repeat line-left minwidth-1"><a
-												href="">First Name</a>
-											</th>
+												href="">First Name</a></th>
 											<th class="table-header-repeat line-left"><a href="">Email</a>
 											</th>
 											<th class="table-header-repeat line-left"><a href="">Due</a>
@@ -433,108 +412,57 @@
 											<th class="table-header-options line-left"><a href="">Options</a>
 											</th>
 										</tr>
+										<%
+											List<Product> datas = (List<Product>) request.getAttribute("datas");
+											if (datas == null || datas.size() == 0) {
+										%>
 										<tr>
-											<td><input type="checkbox" />
-											</td>
-											<td>Sabev</td>
-											<td>George</td>
-											<td><a href="">george@mainevent.co.za</a>
-											</td>
-											<td>R250</td>
-											<td><a href="">www.mainevent.co.za</a>
-											</td>
-											<td class="options-width"><a href="" title="Edit"
-												class="icon-1 info-tooltip"></a> <a href="" title="Edit"
-												class="icon-2 info-tooltip"></a> <a href="" title="Edit"
-												class="icon-3 info-tooltip"></a> <a href="" title="Edit"
-												class="icon-4 info-tooltip"></a> <a href="" title="Edit"
-												class="icon-5 info-tooltip"></a></td>
+											<td>没有产品信息</td>
 										</tr>
-										<tr class="alternate-row">
-											<td><input type="checkbox" />
-											</td>
-											<td>Sabev</td>
-											<td>George</td>
-											<td><a href="">george@mainevent.co.za</a>
-											</td>
-											<td>R250</td>
-											<td><a href="">www.mainevent.co.za</a>
-											</td>
-											<td class="options-width"><a href="" title="Edit"
-												class="icon-1 info-tooltip"></a> <a href="" title="Edit"
-												class="icon-2 info-tooltip"></a> <a href="" title="Edit"
-												class="icon-3 info-tooltip"></a> <a href="" title="Edit"
-												class="icon-4 info-tooltip"></a> <a href="" title="Edit"
-												class="icon-5 info-tooltip"></a></td>
-										</tr>
+										<%
+											} else {
+												int i = 0;
+												for (Product p : datas) {
+
+													if (i % 2 != 0) {
+										%>
 										<tr>
-											<td><input type="checkbox" />
-											</td>
 											<td>Sabev</td>
 											<td>George</td>
-											<td><a href="">george@mainevent.co.za</a>
-											</td>
+											<td><a href="">george@mainevent.co.za</a></td>
 											<td>R250</td>
-											<td><a href="">www.mainevent.co.za</a>
-											</td>
+											<td><a href="">www.mainevent.co.za</a></td>
 											<td class="options-width"><a href="" title="Edit"
 												class="icon-1 info-tooltip"></a> <a href="" title="Edit"
 												class="icon-2 info-tooltip"></a> <a href="" title="Edit"
 												class="icon-3 info-tooltip"></a> <a href="" title="Edit"
 												class="icon-4 info-tooltip"></a> <a href="" title="Edit"
-												class="icon-5 info-tooltip"></a></td>
+												class="icon-5 info-tooltip"></a>
+											</td>
 										</tr>
+										<%
+											} else {
+										%>
 										<tr class="alternate-row">
-											<td><input type="checkbox" />
-											</td>
 											<td>Sabev</td>
 											<td>George</td>
-											<td><a href="">george@mainevent.co.za</a>
-											</td>
+											<td><a href="">george@mainevent.co.za</a></td>
 											<td>R250</td>
-											<td><a href="">www.mainevent.co.za</a>
-											</td>
+											<td><a href="">www.mainevent.co.za</a></td>
 											<td class="options-width"><a href="" title="Edit"
 												class="icon-1 info-tooltip"></a> <a href="" title="Edit"
 												class="icon-2 info-tooltip"></a> <a href="" title="Edit"
 												class="icon-3 info-tooltip"></a> <a href="" title="Edit"
 												class="icon-4 info-tooltip"></a> <a href="" title="Edit"
-												class="icon-5 info-tooltip"></a></td>
+												class="icon-5 info-tooltip"></a>
+											</td>
 										</tr>
-										<tr>
-											<td><input type="checkbox" />
-											</td>
-											<td>Sabev</td>
-											<td>George</td>
-											<td><a href="">george@mainevent.co.za</a>
-											</td>
-											<td>R250</td>
-											<td><a href="">www.mainevent.co.za</a>
-											</td>
-											<td class="options-width"><a href="" title="Edit"
-												class="icon-1 info-tooltip"></a> <a href="" title="Edit"
-												class="icon-2 info-tooltip"></a> <a href="" title="Edit"
-												class="icon-3 info-tooltip"></a> <a href="" title="Edit"
-												class="icon-4 info-tooltip"></a> <a href="" title="Edit"
-												class="icon-5 info-tooltip"></a></td>
-										</tr>
-										<tr class="alternate-row">
-											<td><input type="checkbox" />
-											</td>
-											<td>Sabev</td>
-											<td>George</td>
-											<td><a href="">george@mainevent.co.za</a>
-											</td>
-											<td>R250</td>
-											<td><a href="">www.mainevent.co.za</a>
-											</td>
-											<td class="options-width"><a href="" title="Edit"
-												class="icon-1 info-tooltip"></a> <a href="" title="Edit"
-												class="icon-2 info-tooltip"></a> <a href="" title="Edit"
-												class="icon-3 info-tooltip"></a> <a href="" title="Edit"
-												class="icon-4 info-tooltip"></a> <a href="" title="Edit"
-												class="icon-5 info-tooltip"></a></td>
-										</tr>
+										<%
+											}
+													i += 2;
+												}
+											}
+										%>
 									</table>
 									<!--  end product-table................................... -->
 								</form>
@@ -542,7 +470,7 @@
 							<!--  end content-table  -->
 
 							<!--  start actions-box ............................................... -->
-							<div id="actions-box">
+							<%--<div id="actions-box">
 								<a href="" class="action-slider"></a>
 								<div id="actions-box-slider">
 									<a href="" class="action-edit">Edit</a> <a href=""
@@ -550,6 +478,7 @@
 								</div>
 								<div class="clear"></div>
 							</div>
+							--%>
 							<!-- end actions-box........... -->
 
 							<!--  start paging..................................................... -->
@@ -561,13 +490,15 @@
 										<div id="page-info">
 											Page <strong>1</strong> / 15
 										</div> <a href="" class="page-right"></a> <a href=""
-										class="page-far-right"></a></td>
+										class="page-far-right"></a>
+									</td>
 									<td><select class="styledselect_pages">
 											<option value="">Number of rows</option>
 											<option value="">1</option>
 											<option value="">2</option>
 											<option value="">3</option>
-									</select></td>
+									</select>
+									</td>
 								</tr>
 							</table>
 							<!--  end paging................ -->

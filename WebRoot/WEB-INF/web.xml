@@ -28,6 +28,14 @@
 		<url-pattern>/userAction</url-pattern>
 	</servlet-mapping>
 	
+	<servlet>
+		<servlet-name>productAction</servlet-name>
+		<servlet-class>org.iblogger.action.ProductAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>productAction</servlet-name>
+		<url-pattern>/productAction</url-pattern>
+	</servlet-mapping>
 	<error-page>
 		<error-code>404</error-code>
 		<location>/404.html</location>

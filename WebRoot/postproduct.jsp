@@ -260,11 +260,9 @@
 							<!--[if lte IE 6]><table><tr><td><![endif]-->
 							<div class="select_sub show">
 								<ul class="sub">
-									<li><a href="#nogo">查看所有产品</a>
+									<li><a href="<%=basePath%>productAction?action=all">查看所有产品</a>
 									</li>
 									<li class="sub_show"><a href="#nogo">添加产品</a>
-									</li>
-									<li><a href="#nogo">删除产品</a>
 									</li>
 								</ul>
 							</div> <!--[if lte IE 6]></td></tr></table></a><![endif]--></li>
@@ -324,7 +322,7 @@
 					<div class="nav-divider">&nbsp;</div>
 					<%
 						User user = (User) request.getSession().getAttribute("user");
-						String t = user == null ? "" : user.getUserName();
+						String t = user == null ? " " : user.getUserName();
 					%>
 					<ul class="select">
 						<li><a href="#nogo"><b>用户:<%=t%><b> <!--[if IE 7]><!-->
@@ -382,7 +380,7 @@
 										<div id="step-holder">
 											<div class="step-no">1</div>
 											<div class="step-dark-left">
-												<a href="">Add product details</a>
+												<a href="">添加产品</a>
 											</div>
 											<div class="step-dark-right">&nbsp;</div>
 											<div class="step-no-off">2</div>
@@ -395,20 +393,42 @@
 										</div> <!--  end step-holder --> <!-- start id-form -->
 										<table border="0" cellpadding="0" cellspacing="0" id="id-form">
 											<tr>
-												<th valign="top">Product name:</th>
+												<th valign="top">产品名:</th>
 												<td><input type="text" class="inp-form" /></td>
 												<td></td>
 											</tr>
 											<tr>
-												<th valign="top">Product name:</th>
+												<th valign="top">产品型号:</th>
+												<td><input type="text" class="inp-form" /></td>
+												<td></td>
+											</tr>
+											<tr>
+												<th valign="top">技术参数:</th>
+												<td><input type="text" class="inp-form" /></td>
+												<td></td>
+											</tr>
+											<!-- <tr>
+												<th valign="top">简要介绍:</th>
 												<td><input type="text" class="inp-form-error" /></td>
 												<td>
 													<div class="error-left"></div>
 													<div class="error-inner">This field is required.</div>
 												</td>
+											</tr> -->
+											<tr>
+												<th valign="top">评分:</th>
+												<td><select name="sequence" class="styledselect_form_1">
+														<option value="1">1</option>
+														<option value="2">2</option>
+														<option value="3">3</option>
+														<option value="4">4</option>
+														<option value="5">5</option>
+												</select>
+												</td>
+												<td></td>
 											</tr>
 											<tr>
-												<th valign="top">Category:</th>
+												<th valign="top">生产商:</th>
 												<td><select class="styledselect_form_1">
 														<option value="">All</option>
 														<option value="">Products</option>
@@ -420,7 +440,7 @@
 												<td></td>
 											</tr>
 											<tr>
-												<th valign="top">Sub Category:</th>
+												<th valign="top">产品类别:</th>
 												<td><select class="styledselect_form_1">
 														<option value="">All</option>
 														<option value="">Products</option>
@@ -431,12 +451,12 @@
 												</td>
 												<td></td>
 											</tr>
-											<tr>
+<!-- 											<tr>
 												<th valign="top">Price:</th>
 												<td><input type="text" class="inp-form" /></td>
 												<td></td>
 											</tr>
-											<tr>
+ -->											<!-- <tr>
 												<th valign="top">Select a date:</th>
 												<td class="noheight">
 
@@ -513,35 +533,21 @@
 													</table>
 												</td>
 												<td></td>
-											</tr>
+											</tr> -->
 											<tr>
-												<th valign="top">Description:</th>
+												<th valign="top">商品信息简介:</th>
 												<td><textarea rows="" cols="" class="form-textarea"></textarea>
 												</td>
 												<td></td>
 											</tr>
 											<tr>
-												<th>Image 1:</th>
+												<th>图片:</th>
 												<td><input type="file" class="file_1" /></td>
 												<td>
 													<div class="bubble-left"></div>
 													<div class="bubble-inner">JPEG, GIF 5MB max per image</div>
 													<div class="bubble-right"></div>
 												</td>
-											</tr>
-											<tr>
-												<th>Image 2:</th>
-												<td><input type="file" class="file_1" /></td>
-												<td><div class="bubble-left"></div>
-													<div class="bubble-inner">JPEG, GIF 5MB max per image</div>
-													<div class="bubble-right"></div></td>
-											</tr>
-											<tr>
-												<th>Image 3:</th>
-												<td><input type="file" class="file_1" /></td>
-												<td><div class="bubble-left"></div>
-													<div class="bubble-inner">JPEG, GIF 5MB max per image</div>
-													<div class="bubble-right"></div></td>
 											</tr>
 											<tr>
 												<th>&nbsp;</th>
@@ -578,20 +584,6 @@
 				</tr>
 			</table>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 			<div class="clear">&nbsp;</div>
 
 		</div>
@@ -608,7 +600,7 @@
 	<div id="footer">
 		<!--  start footer-left -->
 		<div id="footer-left">
-			Admin Skin &copy; Copyright Internet Dreams Ltd. <a href="">www.netdreams.co.uk</a>.
+			ForYY &copy; . <a href="">产品评估系统</a>.
 			All rights reserved.
 		</div>
 		<!--  end footer-left -->

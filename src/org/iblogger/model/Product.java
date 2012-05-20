@@ -11,6 +11,9 @@ public class Product {
 	
 	private int cpnCode;//企业外健
 	
+	private String cpnName;
+	
+
 	private int prdctSeq;//产品排名
 	
 	private int prdctDesc;//产品细节
@@ -41,6 +44,24 @@ public class Product {
 
 	public void setCpnCode(int cpnCode) {
 		this.cpnCode = cpnCode;
+	}
+	
+	public String getCpnName() {
+		return cpnName;
+	}
+
+	public void setCpnName(String cpnName) {
+		this.cpnName = cpnName;
+	}
+
+	private String prdctTypeName;
+	
+	public String getPrdctTypeName() {
+		return prdctTypeName;
+	}
+
+	public void setPrdctTypeName(String prdctTypeName) {
+		this.prdctTypeName = prdctTypeName;
 	}
 
 	public int getPrdctSeq() {

@@ -51,12 +51,15 @@ public class UserAction extends HttpServlet{
 				user = dao.registUser(user);
 				if (user != null) {
 					req.getSession().setAttribute("user", user);
-					resp.sendRedirect("home.jsp");
+					resp.sendRedirect("productAction?action=all");
 				}
 			} catch (DaoException e) {
 				e.printStackTrace();
 				resp.sendRedirect("message.jsp");
 			}
+		} else if ("logout".equals(action)) {
+			req.getSession().removeAttribute("user");
+			resp.sendRedirect("login.jsp");
 		} else {
 			String username = req.getParameter("username");
 			String password = req.getParameter("password");
@@ -65,7 +68,8 @@ public class UserAction extends HttpServlet{
 				if (user != null) {
 					req.getSession().setAttribute("user", user);
 					//到达主页
-					resp.sendRedirect("home.jsp");
+//					req.getRequestDispatcher("/productAction?action=all").forward(req, resp);
+					resp.sendRedirect("productAction?action=all");
 				} else {
 					resp.sendRedirect("message.jsp");
 //					req.getRequestDispatcher("/message.jsp").forward(req, resp);

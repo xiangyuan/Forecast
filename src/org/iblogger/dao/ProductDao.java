@@ -27,9 +27,10 @@ public interface ProductDao extends Dao{
 	/**
 	 *  update the product information
 	 * @param product
+	 * @param type 1:插入 2: 更新
 	 * @return
 	 */
-	public boolean updateProduct(Product product);
+	public boolean updateProduct(Product product,int type);
 	
 	/**
 	 * 查看某一个产品

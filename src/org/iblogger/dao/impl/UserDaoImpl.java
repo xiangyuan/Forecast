@@ -84,7 +84,7 @@ public class UserDaoImpl implements UserDao {
 		User user = null;
 		try {
 			conn = Dbutils.getConn();
-			String sql = " select * from Users where userName= ? and UserPassword = ?";
+			String sql = " select * from Users where userName= ? and UserPassword = ? ;";
 			ptmt = Dbutils.getPtmt(conn, sql);
 			
 			ptmt.setString(1, userName);
