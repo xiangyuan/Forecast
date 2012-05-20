@@ -14,6 +14,9 @@ public final class DateFormatUtils {
 	 * @return
 	 */
 	public static final String formatDate(Date d) {
+		if (d == null) {
+			d = new Date();
+		}
 		return sdf.format(d);
 	}
 }
