@@ -3,6 +3,7 @@
 /* Created on:     2012/5/17 23:17:19                           */
 /*==============================================================*/
 
+drop table if exists Company;
 
 drop table if exists FactorSystem;
 
@@ -29,6 +30,36 @@ drop table if exists Users;
 drop table if exists WeightExpertData;
 
 drop table if exists FactorCharacter;
+
+drop table if exists ComposeWay;
+
+drop table if exists CreateWeightWay;
+
+/*==============================================================*/
+/* Table: Company                                          */
+/*==============================================================*/
+create table Company 
+( cid int auto_increment comment '主健',
+  cpnName 	varchar(100),
+  primary key (cid)
+);
+/*==============================================================*/
+/* Table: ComposeWay                                          */
+/*==============================================================*/
+create table ComposeWay
+( composeId int auto_increment,
+  wayName  varchar(100),
+   primary key (composeId)
+
+);
+/*==============================================================*/
+/* Table: CreateWeightWay                                          */
+/*==============================================================*/
+create table CreateWeightWay 
+( weightId int auto_increment,
+ weightName varchar(100),
+  primary key (weightId)
+);
 
 /*==============================================================*/
 /* Table: FactorSystem                                          */
