@@ -8,7 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.iblogger.dao.ProductDao;
+import org.iblogger.model.Company;
 import org.iblogger.model.Product;
+import org.iblogger.model.ProductType;
 import org.iblogger.utils.Dbutils;
 
 /**
@@ -119,7 +121,7 @@ public class ProductDaoImpl implements ProductDao {
 	}
 
 	@Override
-	public boolean updateProduct(Product p,int type) {
+	public boolean updateProduct(Product p, int type) {
 		Connection conn = null;
 		PreparedStatement ptmt = null;
 		boolean re = false;
@@ -127,25 +129,25 @@ public class ProductDaoImpl implements ProductDao {
 			conn = Dbutils.getConn();
 			String sql = "";
 			if (type == 1) {
-				sql = "insert into Product(CpnCode,PrdctSequence,PrdctKindCode,PrdctName" +
-						", PrdctModel,PrdctPara,PrdctPicturePath,PrdctIntro,SubmitTime) values (?,?,?,?,?,?,?,?,sysdate());";
-			} else if (type == 2){
+				sql = "insert into Product(CpnCode,PrdctSequence,PrdctKindCode,PrdctName"
+						+ ", PrdctModel,PrdctPara,PrdctPicturePath,PrdctIntro,SubmitTime) values (?,?,?,?,?,?,?,?,sysdate());";
+			} else if (type == 2) {
 				sql = "update Product set";
 			}
-			
+
 			ptmt = Dbutils.getPtmt(conn, sql);
 			if (type == 1) {
 				int index = 1;
 				ptmt.setInt(index++, p.getCpnCode());
 				ptmt.setInt(index++, p.getPrdctSeq());
-				ptmt.setInt(index++, p.getPrdctDesc());
+				ptmt.setInt(index++, p.getPrdctKindCode());
 				ptmt.setString(index++, p.getPrdctName());
 				ptmt.setString(index++, p.getPrdctModel());
 				ptmt.setString(index++, p.getPrdctParam());
 				ptmt.setString(index++, p.getPrdctPath());
 				ptmt.setString(index++, p.getPrdctIntro());
 			} else if (type == 2) {
-				
+
 			}
 			int c = ptmt.executeUpdate();
 			if (c > 0) {
@@ -186,7 +188,7 @@ public class ProductDaoImpl implements ProductDao {
 					+ " pt.PrdctTypeName from Product p,Company c,ProductType pt where p.CpnCode = c.cid and p.PrdctKindCode = pt.PrdctTypeCode and p.PrdctCode = ? ";
 			ptmt = Dbutils.getPtmt(conn, sql);
 
-			ptmt.setInt(1,id);
+			ptmt.setInt(1, id);
 			rs = ptmt.executeQuery();
 
 			if (rs != null) {
@@ -230,5 +232,109 @@ public class ProductDaoImpl implements ProductDao {
 			}
 		}
 		return (p);
+	}
+
+	@Override
+	public List<Company> queryCompany() {
+		Connection conn = null;
+		PreparedStatement ptmt = null;
+		ResultSet rs = null;
+		List<Company> datas = null;
+		try {
+			conn = Dbutils.getConn();
+			String sql = "select * from Company";
+			ptmt = Dbutils.getPtmt(conn, sql);
+
+			rs = ptmt.executeQuery();
+
+			if (rs != null) {
+				Company p = null;
+				datas = new ArrayList<Company>();
+				while (rs.next()) {
+					p = new Company();
+					p.setId(rs.getInt(1));
+					p.setcName(rs.getString(2));
+					datas.add(p);
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			// throw new DaoException("查找用户出现异常");
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (ptmt != null) {
+				try {
+					ptmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return (datas);
+	}
+
+	@Override
+	public List<ProductType> queryPType() {
+		Connection conn = null;
+		PreparedStatement ptmt = null;
+		ResultSet rs = null;
+		List<ProductType> datas = null;
+		try {
+			conn = Dbutils.getConn();
+			String sql = "select * from ProductType;";
+			ptmt = Dbutils.getPtmt(conn, sql);
+
+			rs = ptmt.executeQuery();
+
+			if (rs != null) {
+				ProductType p = null;
+				datas = new ArrayList<ProductType>();
+				while (rs.next()) {
+					p = new ProductType();
+					p.setPrdctCode(rs.getInt(1));
+					p.setPrdctName(rs.getString(2));
+					datas.add(p);
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			// throw new DaoException("查找用户出现异常");
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (ptmt != null) {
+				try {
+					ptmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return (datas);
 	}
 }

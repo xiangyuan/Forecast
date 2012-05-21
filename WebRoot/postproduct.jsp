@@ -3,8 +3,8 @@
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
-			+ request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
+	+ request.getServerName() + ":" + request.getServerPort()
+	+ path + "/";
 
 	//String currentUser = session.getAttribute("UserId").toString();
 %>
@@ -262,10 +262,10 @@
 								<ul class="sub">
 									<li><a href="<%=basePath%>productAction?action=all">查看所有产品</a>
 									</li>
-									<li class="sub_show"><a href="#nogo">添加产品</a>
-									</li>
+									<li class="sub_show"><a href="#nogo">添加产品</a></li>
 								</ul>
-							</div> <!--[if lte IE 6]></td></tr></table></a><![endif]--></li>
+							</div> <!--[if lte IE 6]></td></tr></table></a><![endif]-->
+						</li>
 					</ul>
 
 					<div class="nav-divider">&nbsp;</div>
@@ -275,14 +275,12 @@
 							<!--[if lte IE 6]><table><tr><td><![endif]-->
 							<div class="select_sub">
 								<ul class="sub">
-									<li><a href="#nogo">评价任务</a>
-									</li>
-									<li><a href="#nogo">创建评价任务</a>
-									</li>
-									<li><a href="#nogo">删除评价任务</a>
-									</li>
+									<li><a href="#nogo">评价任务</a></li>
+									<li><a href="#nogo">创建评价任务</a></li>
+									<li><a href="#nogo">删除评价任务</a></li>
 								</ul>
-							</div> <!--[if lte IE 6]></td></tr></table></a><![endif]--></li>
+							</div> <!--[if lte IE 6]></td></tr></table></a><![endif]-->
+						</li>
 					</ul>
 
 					<div class="nav-divider">&nbsp;</div>
@@ -292,15 +290,13 @@
 							<!--[if lte IE 6]><table><tr><td><![endif]-->
 							<div class="select_sub">
 								<ul class="sub">
-									<li><a href="#nogo">Clients Details 1</a>
-									</li>
-									<li><a href="#nogo">Clients Details 2</a>
-									</li>
-									<li><a href="#nogo">Clients Details 3</a>
-									</li>
+									<li><a href="#nogo">Clients Details 1</a></li>
+									<li><a href="#nogo">Clients Details 2</a></li>
+									<li><a href="#nogo">Clients Details 3</a></li>
 
 								</ul>
-							</div> <!--[if lte IE 6]></td></tr></table></a><![endif]--></li>
+							</div> <!--[if lte IE 6]></td></tr></table></a><![endif]-->
+						</li>
 					</ul>
 
 					<div class="nav-divider">&nbsp;</div>
@@ -310,14 +306,12 @@
 						</a> <!--<![endif]--> <!--[if lte IE 6]><table><tr><td><![endif]-->
 							<div class="select_sub">
 								<ul class="sub">
-									<li><a href="#nogo">News details 1</a>
-									</li>
-									<li><a href="#nogo">News details 2</a>
-									</li>
-									<li><a href="#nogo">News details 3</a>
-									</li>
+									<li><a href="#nogo">News details 1</a></li>
+									<li><a href="#nogo">News details 2</a></li>
+									<li><a href="#nogo">News details 3</a></li>
 								</ul>
-							</div> <!--[if lte IE 6]></td></tr></table></a><![endif]--></li>
+							</div> <!--[if lte IE 6]></td></tr></table></a><![endif]-->
+						</li>
 					</ul>
 					<div class="nav-divider">&nbsp;</div>
 					<%
@@ -326,7 +320,8 @@
 					%>
 					<ul class="select">
 						<li><a href="#nogo"><b>用户:<%=t%><b> <!--[if IE 7]><!-->
-						</a> <!--<![endif]--> <!--[if lte IE 6]><table><tr><td><![endif]--></li>
+						</a> <!--<![endif]--> <!--[if lte IE 6]><table><tr><td><![endif]-->
+						</li>
 					</ul>
 
 					<div class="clear"></div>
@@ -359,13 +354,15 @@
 				<tr>
 					<th rowspan="3" class="sized"><img
 						src="images/shared/side_shadowleft.jpg" width="20" height="300"
-						alt="" /></th>
+						alt="" />
+					</th>
 					<th class="topleft"></th>
 					<td id="tbl-border-top">&nbsp;</td>
 					<th class="topright"></th>
 					<th rowspan="3" class="sized"><img
 						src="images/shared/side_shadowright.jpg" width="20" height="300"
-						alt="" /></th>
+						alt="" />
+					</th>
 				</tr>
 				<tr>
 					<td id="tbl-border-left"></td>
@@ -391,23 +388,29 @@
 											<div class="step-light-round">&nbsp;</div>
 											<div class="clear"></div>
 										</div> <!--  end step-holder --> <!-- start id-form -->
-										<table border="0" cellpadding="0" cellspacing="0" id="id-form">
-											<tr>
-												<th valign="top">产品名:</th>
-												<td><input type="text" class="inp-form" /></td>
-												<td></td>
-											</tr>
-											<tr>
-												<th valign="top">产品型号:</th>
-												<td><input type="text" class="inp-form" /></td>
-												<td></td>
-											</tr>
-											<tr>
-												<th valign="top">技术参数:</th>
-												<td><input type="text" class="inp-form" /></td>
-												<td></td>
-											</tr>
-											<!-- <tr>
+										<form action="uploadAction" method="post"
+											enctype="multipart/form-data">
+											<table border="0" cellpadding="0" cellspacing="0"
+												id="id-form">
+												<tr>
+													<th valign="top">产品名:</th>
+													<td><input name="pName" type="text" class="inp-form" />
+													</td>
+													<td></td>
+												</tr>
+												<tr>
+													<th valign="top">产品型号:</th>
+													<td><input name="pModel" type="text" class="inp-form" />
+													</td>
+													<td></td>
+												</tr>
+												<tr>
+													<th valign="top">技术参数:</th>
+													<td><input name="pParam" type="text" class="inp-form" />
+													</td>
+													<td></td>
+												</tr>
+												<!-- <tr>
 												<th valign="top">简要介绍:</th>
 												<td><input type="text" class="inp-form-error" /></td>
 												<td>
@@ -415,157 +418,86 @@
 													<div class="error-inner">This field is required.</div>
 												</td>
 											</tr> -->
-											<tr>
-												<th valign="top">评分:</th>
-												<td><select name="sequence" class="styledselect_form_1">
-														<option value="1">1</option>
-														<option value="2">2</option>
-														<option value="3">3</option>
-														<option value="4">4</option>
-														<option value="5">5</option>
-												</select>
-												</td>
-												<td></td>
-											</tr>
-											<tr>
-												<th valign="top">生产商:</th>
-												<td><select class="styledselect_form_1">
-														<option value="">All</option>
-														<option value="">Products</option>
-														<option value="">Categories</option>
-														<option value="">Clients</option>
-														<option value="">News</option>
-												</select>
-												</td>
-												<td></td>
-											</tr>
-											<tr>
-												<th valign="top">产品类别:</th>
-												<td><select class="styledselect_form_1">
-														<option value="">All</option>
-														<option value="">Products</option>
-														<option value="">Categories</option>
-														<option value="">Clients</option>
-														<option value="">News</option>
-												</select>
-												</td>
-												<td></td>
-											</tr>
-<!-- 											<tr>
-												<th valign="top">Price:</th>
-												<td><input type="text" class="inp-form" /></td>
-												<td></td>
-											</tr>
- -->											<!-- <tr>
-												<th valign="top">Select a date:</th>
-												<td class="noheight">
+												<tr>
+													<th valign="top">评分:</th>
+													<td><select name="sequence"
+														class="styledselect_form_1">
+															<option value="1">1</option>
+															<option value="2">2</option>
+															<option value="3">3</option>
+															<option value="4">4</option>
+															<option value="5">5</option>
+													</select></td>
+													<td></td>
+												</tr>
+												<tr>
+													<th valign="top">生产商:</th>
+													<td><select name="company" class="styledselect_form_1">
+															<%
+																List<Company> ccs = (List<Company>) request.getAttribute("ccs");
+																if (ccs != null) {
+																	for (Company c : ccs) {
+															%>
+															<option value="<%=c.getId()%>"><%=c.getcName()%></option>
+															<%
+																}
+																}
+															%>
+													</select>
+													</td>
+													<td></td>
+												</tr>
+												<tr>
+													<th valign="top">产品类别:</th>
+													<td><select name="productType"
+														class="styledselect_form_1">
+															<%
+																List<ProductType> pts = (List<ProductType>) request
+																		.getAttribute("pts");
+																if (ccs != null) {
+																	for (ProductType p : pts) {
+															%>
+															<option value="<%=p.getPrdctCode()%>"><%=p.getPrdctName()%></option>
+															<%
+																}
+																}
+															%>
 
-													<table border="0" cellpadding="0" cellspacing="0">
-														<tr valign="top">
-															<td>
-																<form id="chooseDateForm" action="#">
-
-																	<select id="d" class="styledselect-day">
-																		<option value="">dd</option>
-																		<option value="1">1</option>
-																		<option value="2">2</option>
-																		<option value="3">3</option>
-																		<option value="4">4</option>
-																		<option value="5">5</option>
-																		<option value="6">6</option>
-																		<option value="7">7</option>
-																		<option value="8">8</option>
-																		<option value="9">9</option>
-																		<option value="10">10</option>
-																		<option value="11">11</option>
-																		<option value="12">12</option>
-																		<option value="13">13</option>
-																		<option value="14">14</option>
-																		<option value="15">15</option>
-																		<option value="16">16</option>
-																		<option value="17">17</option>
-																		<option value="18">18</option>
-																		<option value="19">19</option>
-																		<option value="20">20</option>
-																		<option value="21">21</option>
-																		<option value="22">22</option>
-																		<option value="23">23</option>
-																		<option value="24">24</option>
-																		<option value="25">25</option>
-																		<option value="26">26</option>
-																		<option value="27">27</option>
-																		<option value="28">28</option>
-																		<option value="29">29</option>
-																		<option value="30">30</option>
-																		<option value="31">31</option>
-																	</select>
-															</td>
-															<td><select id="m" class="styledselect-month">
-																	<option value="">mmm</option>
-																	<option value="1">Jan</option>
-																	<option value="2">Feb</option>
-																	<option value="3">Mar</option>
-																	<option value="4">Apr</option>
-																	<option value="5">May</option>
-																	<option value="6">Jun</option>
-																	<option value="7">Jul</option>
-																	<option value="8">Aug</option>
-																	<option value="9">Sep</option>
-																	<option value="10">Oct</option>
-																	<option value="11">Nov</option>
-																	<option value="12">Dec</option>
-															</select>
-															</td>
-															<td><select id="y" class="styledselect-year">
-																	<option value="">yyyy</option>
-																	<option value="2005">2005</option>
-																	<option value="2006">2006</option>
-																	<option value="2007">2007</option>
-																	<option value="2008">2008</option>
-																	<option value="2009">2009</option>
-																	<option value="2010">2010</option>
-															</select>
-																</form>
-															</td>
-															<td><a href="" id="date-pick"><img
-																	src="images/forms/icon_calendar.jpg" alt="" /> </a></td>
-														</tr>
-													</table>
-												</td>
-												<td></td>
-											</tr> -->
-											<tr>
-												<th valign="top">商品信息简介:</th>
-												<td><textarea rows="" cols="" class="form-textarea"></textarea>
-												</td>
-												<td></td>
-											</tr>
-											<tr>
-												<th>图片:</th>
-												<td><input type="file" class="file_1" /></td>
-												<td>
-													<div class="bubble-left"></div>
-													<div class="bubble-inner">JPEG, GIF 5MB max per image</div>
-													<div class="bubble-right"></div>
-												</td>
-											</tr>
-											<tr>
-												<th>&nbsp;</th>
-												<td valign="top"><input type="button" value=""
-													class="form-submit" /> <input type="reset" value=""
-													class="form-reset" />
-												</td>
-												<td></td>
-											</tr>
-										</table> <!-- end id-form  -->
-									</td>
-									<td>
-								
-									</td>
+													</select></td>
+													<td></td>
+												</tr>
+												<tr>
+													<th valign="top">商品信息简介:</th>
+													<td><textarea name="descrip" rows="" cols=""
+															class="form-textarea"></textarea>
+													</td>
+													<td></td>
+												</tr>
+												<tr>
+													<th>图片:</th>
+													<td><input name="uploadFile" type="file" class="file_1" />
+													</td>
+													<td>
+														<div class="bubble-left"></div>
+														<div class="bubble-inner">JPEG, GIF 5MB max per
+															image</div>
+														<div class="bubble-right"></div></td>
+												</tr>
+												<tr>
+													<th>&nbsp;</th>
+													<td valign="top"><input type="submit" value="submit"
+														class="form-submit" /> <input type="reset" value=""
+														class="form-reset" /></td>
+													<td></td>
+												</tr>
+											</table>
+										</form> <!-- end id-form  --></td>
+									<td></td>
 								</tr>
 								<tr>
 									<td><img src="images/shared/blank.gif" width="695"
-										height="1" alt="blank" /></td>
+										height="1" alt="blank" />
+									</td>
 									<td></td>
 								</tr>
 							</table>
@@ -573,8 +505,7 @@
 							<div class="clear"></div>
 
 
-						</div> <!--  end content-table-inner  -->
-					</td>
+						</div> <!--  end content-table-inner  --></td>
 					<td id="tbl-border-right"></td>
 				</tr>
 				<tr>
@@ -583,7 +514,6 @@
 					<th class="sized bottomright"></th>
 				</tr>
 			</table>
-
 			<div class="clear">&nbsp;</div>
 
 		</div>
@@ -600,8 +530,7 @@
 	<div id="footer">
 		<!--  start footer-left -->
 		<div id="footer-left">
-			ForYY &copy; . <a href="">产品评估系统</a>.
-			All rights reserved.
+			ForYY &copy; . <a href="">产品评估系统</a>. All rights reserved.
 		</div>
 		<!--  end footer-left -->
 		<div class="clear">&nbsp;</div>

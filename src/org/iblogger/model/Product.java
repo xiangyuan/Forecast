@@ -13,6 +13,16 @@ public class Product {
 	
 	private String cpnName;
 	
+	private int prdctKindCode;
+	
+
+	public int getPrdctKindCode() {
+		return prdctKindCode;
+	}
+
+	public void setPrdctKindCode(int prdctKindCode) {
+		this.prdctKindCode = prdctKindCode;
+	}
 
 	private int prdctSeq;//产品排名
 	

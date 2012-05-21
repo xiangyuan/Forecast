@@ -2,7 +2,9 @@ package org.iblogger.dao;
 
 import java.util.List;
 
+import org.iblogger.model.Company;
 import org.iblogger.model.Product;
+import org.iblogger.model.ProductType;
 
 /**
  * 
@@ -18,6 +20,10 @@ public interface ProductDao extends Dao{
 	 * @return
 	 */
 	public List<Product> queryProduct();
+	
+	public List<Company> queryCompany();
+	
+	public List<ProductType> queryPType();
 	/**
 	 * 
 	 * @param prdctId

@@ -36,6 +36,15 @@
 		<servlet-name>productAction</servlet-name>
 		<url-pattern>/productAction</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>uploadAction</servlet-name>
+		<servlet-class>org.iblogger.action.UploadAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>uploadAction</servlet-name>
+		<url-pattern>/uploadAction</url-pattern>
+	</servlet-mapping>
 	<error-page>
 		<error-code>404</error-code>
 		<location>/404.html</location>

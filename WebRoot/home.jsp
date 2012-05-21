@@ -281,7 +281,7 @@
 							<div class="select_sub show">
 								<ul class="sub">
 									<li class="sub_show"><a href="#nogo">查看所有产品</a></li>
-									<li><a href="<%=basePath%>postproduct.jsp">添加产品</a></li>
+									<li><a href="<%=basePath%>productAction?action=add">添加产品</a></li>
 								</ul>
 							</div> <!--[if lte IE 6]></td></tr></table></a><![endif]-->
 						</li>

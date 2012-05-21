@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.iblogger.dao.ProductDao;
 import org.iblogger.dao.impl.ProductDaoImpl;
+import org.iblogger.model.Company;
 import org.iblogger.model.Product;
+import org.iblogger.model.ProductType;
 /**
  * 
  * @title
@@ -49,6 +51,11 @@ public class ProductAction extends HttpServlet {
 				
 			} else if ("add".equals(action)) {
 				//查找出company,产品类别信息
+				List<Company> ccs = dao.queryCompany();
+				List<ProductType> pts = dao.queryPType();
+				req.setAttribute("ccs", ccs);
+				req.setAttribute("pts", pts);
+				req.getRequestDispatcher("/postproduct.jsp").forward(req, resp);
 			}
 		}
 	}

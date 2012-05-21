@@ -68,7 +68,7 @@ create table FactorSystem
 (
    FactorCode           int auto_increment comment '主键',
    TaskCode             int comment '主键',
-   FactorName           varchar(50),
+   FactorName           varchar(100),
    BelongFactorCode     int comment '若为最上层，该值为0',
    BelongTaskCode       int comment '外键',
    IsLeaf               int,
@@ -93,7 +93,7 @@ create table PrdctExpertData
    ProductCode          int not null,
    FactorCode           int not null,
    ExpertCode           int not null,
-   QualitativeRank      varchar(4) comment '优，良，中，差，很差',
+   QualitativeRank      varchar(100) comment '优，良，中，差，很差',
    primary key (ProductCode, FactorCode, ExpertCode)
 );
 
@@ -106,11 +106,11 @@ create table Product
    CpnCode              int comment '外键，定义见企业基本信息表',
    PrdctSequence        int comment '本企业内产品排名',
    PrdctKindCode        int comment '外键，定义见产品明细类',
-   PrdctName            varchar(50),
-   PrdctModel           varchar(50),
-   PrdctPara            varchar(50),
-   PrdctPicturePath     varchar(50),
-   PrdctIntro           varchar(50),
+   PrdctName            varchar(100),
+   PrdctModel           varchar(100),
+   PrdctPara            varchar(100),
+   PrdctPicturePath     varchar(100),
+   PrdctIntro           varchar(100),
    SubmitTime           datetime,
    primary key (PrdctCode) 
 );
@@ -123,7 +123,7 @@ create table ProductFactor
    ProductCode          int not null,
    FactorCode           int not null,
    QuantitativeVal      float,
-   QuanlitativeRank     varchar(5) comment '优，良，中，差，很差',
+   QuanlitativeRank     varchar(80) comment '优，良，中，差，很差',
    StandardizedVal      float,
    NoDimensionVal       float,
    primary key (ProductCode, FactorCode)
@@ -146,7 +146,7 @@ create table ProductResult
 create table ProductType
 (
    PrdctTypeCode        int auto_increment comment '主键',
-   PrdctTypeName        varchar(60),
+   PrdctTypeName        varchar(80),
    primary key (PrdctTypeCode) 
 );
 
@@ -156,7 +156,7 @@ create table ProductType
 create table Task
 (
    TaskCode             int auto_increment comment '主键',
-   TaskName             varchar(30),
+   TaskName             varchar(80),
    TaskIntro            varchar(100),
    CEPrdctTypeCode      int,
    CreateWeightWay      int comment '1:AHP法
@@ -200,16 +200,16 @@ create table TaskResult
 create table Users
 (
    UserID               int auto_increment comment '主键，用户注册时填写，并进行唯一性检查',
-   UserPassword         varchar(20) comment '注册时填写',
+   UserPassword         varchar(80) comment '注册时填写',
    UserType             int comment '1:超级管理员,2:企业',
-   UserName             varchar(25),
-   UserCompany          varchar(25),
-   UserPhone            varchar(30),
-   UserEmail            varchar(25),
+   UserName             varchar(80),
+   UserCompany          varchar(80),
+   UserPhone            varchar(80),
+   UserEmail            varchar(80),
    RegDate              datetime,
    IsPast               int,
    PassDate             datetime,
-   NotPassResponse      varchar(20),
+   NotPassResponse      varchar(80),
    primary key (UserID) 
 );
 
@@ -231,7 +231,7 @@ create table FactorCharacter
 (
    FacorCode            int auto_increment comment '主键',
    PrdctTypeCode        int comment '主键',
-   FactorUnit           varchar(4),
+   FactorUnit           varchar(80),
    IsQualitative        int,
    FactorType           int comment '0:极大型
             1:极小型
@@ -255,4 +255,19 @@ alter table TaskResult add constraint FK_Reference_1 foreign key (TaskCode, Prod
 
 alter table FactorCharacter add constraint FK_Reference_2 foreign key (PrdctTypeCode)
       references ProductType (PrdctTypeCode) on delete restrict on update restrict;
+      
+      
+insert into ProductType(PrdctTypeName) values('多媒体');
+insert into ProductType(PrdctTypeName) values('文档类');
+insert into ProductType(PrdctTypeName) values('消费类软件');
+insert into ProductType(PrdctTypeName) values('企业软件');
+insert into ProductType(PrdctTypeName) values('个人软件');
+insert into ProductType(PrdctTypeName) values('社交软件');
 
+
+insert into Company(cpnName) values('google');
+insert into Company(cpnName) values('facebook');
+insert into Company(cpnName) values('apple');
+insert into Company(cpnName) values('twitter');
+insert into Company(cpnName) values('wumii');
+insert into Company(cpnName) values('wondershare');
