@@ -44,7 +44,10 @@ public class ProductAction extends HttpServlet {
 				req.setAttribute("datas", datas);
 				req.getRequestDispatcher("/home.jsp").forward(req, resp);
 			} else if ("delete".equals(action)) {
-				
+				String pid = req.getParameter("pid");
+				if (dao.deleteProduct(Integer.parseInt(pid))) {
+					resp.sendRedirect("productAction?action=all");
+				}
 			} else if ("modify".equals(action)) {
 				
 			} else if ("get".equals(action)) {

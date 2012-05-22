@@ -399,17 +399,21 @@
 											</th>
 											--%>
 											<th class="table-header-repeat line-left minwidth-1"><a
-												href="">Last Name</a>
+												href="#">编号</a>
 											</th>
 											<th class="table-header-repeat line-left minwidth-1"><a
-												href="">First Name</a></th>
-											<th class="table-header-repeat line-left"><a href="">Email</a>
+												href="#">生产商</a></th>
+											<th class="table-header-repeat line-left minwidth-1"><a href="#">产品类型</a>
 											</th>
-											<th class="table-header-repeat line-left"><a href="">Due</a>
+											<th class="table-header-repeat line-left"><a href="#">产品名称</a>
 											</th>
-											<th class="table-header-repeat line-left"><a href="">Website</a>
+											<th class="table-header-repeat line-left"><a href="#">产品图片</a>
 											</th>
-											<th class="table-header-options line-left"><a href="">Options</a>
+											<th class="table-header-options line-left"><a href="#">产品参数</a>
+											</th>
+											<th class="table-header-options line-left"><a href="#">产品描述</a>
+											</th>
+											<th class="table-header-options line-left"><a href="#">操作</a>
 											</th>
 										</tr>
 										<%
@@ -427,35 +431,41 @@
 													if (i % 2 != 0) {
 										%>
 										<tr>
-											<td>Sabev</td>
-											<td>George</td>
-											<td><a href="">george@mainevent.co.za</a></td>
-											<td>R250</td>
-											<td><a href="">www.mainevent.co.za</a></td>
-											<td class="options-width"><a href="" title="Edit"
-												class="icon-1 info-tooltip"></a> <a href="" title="Edit"
-												class="icon-2 info-tooltip"></a> <a href="" title="Edit"
+											<td><%=p.getPrdctCode() %></td>
+											<td><%=p.getCpnName() %></td>
+											<td><%=p.getPrdctTypeName() %></td>
+											<td><%=p.getPrdctName() %></td>
+											<td><img src="<%=basePath%><%=p.getPrdctPath()%>"></img></td>
+											<td><%=p.getPrdctParam() %></td>
+											<td><%=p.getPrdctIntro()%></td>
+											<td class="options-width"><a href="#" title="Edit"
+												class="icon-1 info-tooltip"></a> <a href="productAction?action=delete&pid=<%=p.getPrdctCode()%>" title="Delete"
+												class="icon-2 info-tooltip"></a> 
+												<!-- <a href="" title="Edit"
 												class="icon-3 info-tooltip"></a> <a href="" title="Edit"
 												class="icon-4 info-tooltip"></a> <a href="" title="Edit"
-												class="icon-5 info-tooltip"></a>
+												class="icon-5 info-tooltip"></a> -->
 											</td>
 										</tr>
 										<%
 											} else {
 										%>
 										<tr class="alternate-row">
-											<td>Sabev</td>
-											<td>George</td>
-											<td><a href="">george@mainevent.co.za</a></td>
-											<td>R250</td>
-											<td><a href="">www.mainevent.co.za</a></td>
-											<td class="options-width"><a href="" title="Edit"
-												class="icon-1 info-tooltip"></a> <a href="" title="Edit"
-												class="icon-2 info-tooltip"></a> <a href="" title="Edit"
+											<td><%=p.getPrdctCode() %></td>
+											<td><%=p.getCpnName() %></td>
+											<td><%=p.getPrdctTypeName() %></td>
+											<td><%=p.getPrdctName() %></td>
+											<td><img src="<%=basePath%><%=p.getPrdctPath()%>" width="120px" height="80px"></img></td>
+											<td><%=p.getPrdctParam() %></td>
+											<td><%=p.getPrdctIntro()%></td>
+											<td class="options-width"><a href="#" title="Edit"
+												class="icon-1 info-tooltip"></a> <a href="productAction?action=delete&pid=<%=p.getPrdctCode()%>" title="Delete"
+												class="icon-2 info-tooltip"></a> 
+												<!-- <a href="" title="Edit"
 												class="icon-3 info-tooltip"></a> <a href="" title="Edit"
 												class="icon-4 info-tooltip"></a> <a href="" title="Edit"
 												class="icon-5 info-tooltip"></a>
-											</td>
+ -->											</td>
 										</tr>
 										<%
 											}
