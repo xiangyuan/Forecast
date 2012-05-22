@@ -15,8 +15,6 @@ import org.iblogger.model.User;
 
 public class MyFilter implements Filter {
 
-	private String contextPath;
-	
 	@Override
 	public void destroy() {
 		// TODO Auto-generated method stub
@@ -31,8 +29,7 @@ public class MyFilter implements Filter {
 		HttpServletResponse response = (HttpServletResponse) resp;
 		User user = (User) request.getSession().getAttribute("user");
 		if (user == null) {
-			System.out.println(contextPath);
-			response.sendRedirect(contextPath + "/login.jsp");
+			response.sendRedirect("login.jsp");
 		} else {
 			//到主页
 			doFilter(request, response,chain);
@@ -42,7 +39,6 @@ public class MyFilter implements Filter {
 	@Override
 	public void init(FilterConfig config) throws ServletException {
 		// TODO Auto-generated method stub
-		contextPath = config.getServletContext().getContextPath();
 	}
 
 }

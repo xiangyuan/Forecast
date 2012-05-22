@@ -7,27 +7,36 @@
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
-	
+
 	<servlet>
 		<servlet-name>userAction</servlet-name>
 		<servlet-class>org.iblogger.action.UserAction</servlet-class>
 	</servlet>
-	
-	<!-- <filter>
+
+	<filter>
 		<filter-name>pathFilter</filter-name>
 		<filter-class>org.iblogger.action.MyFilter</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>pathFilter</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping> -->
-	
-	
+		<url-pattern>/userAction</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>pathFilter</filter-name>
+		<url-pattern>/productAction</url-pattern>
+	</filter-mapping>
+
+	<filter-mapping>
+		<filter-name>pathFilter</filter-name>
+		<url-pattern>/uploadAction</url-pattern>
+	</filter-mapping>
+
+
 	<servlet-mapping>
 		<servlet-name>userAction</servlet-name>
 		<url-pattern>/userAction</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 		<servlet-name>productAction</servlet-name>
 		<servlet-class>org.iblogger.action.ProductAction</servlet-class>
@@ -36,7 +45,7 @@
 		<servlet-name>productAction</servlet-name>
 		<url-pattern>/productAction</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 		<servlet-name>uploadAction</servlet-name>
 		<servlet-class>org.iblogger.action.UploadAction</servlet-class>
