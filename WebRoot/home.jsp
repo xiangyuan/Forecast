@@ -225,7 +225,7 @@
 			<div id="nav-right">
 
 				<div class="nav-divider">&nbsp;</div>
-				<a href="" id="logout"><img
+				<a href="userAction?action=logout" id="logout"><img
 					src="images/shared/nav/nav_logout.gif" width="64" height="14"
 					alt="" /> </a>
 				<div class="clear">&nbsp;</div>
