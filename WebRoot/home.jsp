@@ -294,9 +294,8 @@
 							<!--[if lte IE 6]><table><tr><td><![endif]-->
 							<div class="select_sub">
 								<ul class="sub">
-									<li><a href="#nogo">评价任务</a></li>
-									<li><a href="#nogo">创建评价任务</a></li>
-									<li><a href="#nogo">删除评价任务</a></li>
+									<li><a href="Show_evaluate.jsp">评价任务</a></li>
+									<li><a href="add_evaluate.jsp">创建评价任务</a></li>
 								</ul>
 							</div> <!--[if lte IE 6]></td></tr></table></a><![endif]-->
 						</li>
