@@ -1,9 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%><%@page import="java.sql.Connection"%><%@page import="org.iblogger.utils.Dbutils"%><%@page import="java.sql.PreparedStatement"%><%@page import="java.sql.ResultSet"%><%@page import="org.iblogger.model.User"%>
 
-
-
-
-
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";

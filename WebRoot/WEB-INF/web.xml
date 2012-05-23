@@ -13,7 +13,7 @@
 		<servlet-class>org.iblogger.action.UserAction</servlet-class>
 	</servlet>
 
-	<filter>
+	<!-- <filter>
 		<filter-name>pathFilter</filter-name>
 		<filter-class>org.iblogger.action.MyFilter</filter-class>
 	</filter>
@@ -29,7 +29,7 @@
 	<filter-mapping>
 		<filter-name>pathFilter</filter-name>
 		<url-pattern>/uploadAction</url-pattern>
-	</filter-mapping>
+	</filter-mapping> -->
 
 
 	<servlet-mapping>

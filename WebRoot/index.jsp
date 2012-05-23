@@ -27,7 +27,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <%
     	User user = (User)request.getSession().getAttribute("user");
     	if (user != null) {
-    		
+    		response.sendRedirect("productAction?action=all");
     	} else {
     		request.getRequestDispatcher("/login.jsp").forward(request,response);
     	}
