@@ -63,6 +63,16 @@
 		<servlet-name>addEvaluate</servlet-name>
 		<url-pattern>/addEvaluate</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>commentAction</servlet-name>
+		<servlet-class>org.iblogger.action.CommentAction</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>commentAction</servlet-name>
+		<url-pattern>/commentAction</url-pattern>
+	</servlet-mapping>
+	
 	<error-page>
 		<error-code>404</error-code>
 		<location>/404.html</location>

@@ -2,9 +2,7 @@ package org.iblogger.dao;
 
 import java.util.List;
 
-import org.iblogger.model.Company;
-import org.iblogger.model.Product;
-import org.iblogger.model.ProductType;
+import org.iblogger.model.FactorCharacter;
 
 /**
  * 
@@ -13,19 +11,17 @@ import org.iblogger.model.ProductType;
  * @author ForYY
  * @version 1.0 May 18, 2012 11:48:29 PM
  */
-public interface ProductDao extends Dao{
+public interface FactorDao extends Dao{
 
 	/**
 	 * 
 	 * @return
 	 */
-	public List<Product> queryProduct();
+	public List<FactorCharacter> queryProduct();
 	
-	public List<Product> getResultProduct();
+	public List<FactorCharacter> queryCompany();
 	
-	public List<Company> queryCompany();
-	
-	public List<ProductType> queryPType();
+	public List<FactorCharacter> queryPType();
 	/**
 	 * 
 	 * @param prdctId
@@ -38,12 +34,12 @@ public interface ProductDao extends Dao{
 	 * @param type 1:插入 2: 更新
 	 * @return
 	 */
-	public boolean updateProduct(Product product,int type);
+	public boolean updateProduct(FactorCharacter product,int type);
 	
 	/**
 	 * 查看某一个产品
 	 * @param id
 	 * @return
 	 */
-	public Product queryProduct(int id);
+	public FactorCharacter queryProduct(int id);
 }

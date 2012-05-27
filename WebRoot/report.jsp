@@ -12,7 +12,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>系统主页</title>
+<title>系统报告</title>
 <link rel="stylesheet" href="css/screen.css" type="text/css"
 	media="screen" title="default" />
 <!--[if IE]>
@@ -275,7 +275,7 @@
 		</ul>
 		-->
 
-					<ul class="current">
+					<ul class="select">
 						<li><a href="<%=basePath%>productAction?action=all"><b>产品</b> <!--[if IE 7]><!--> </a> <!--<![endif]-->
 							<!--[if lte IE 6]><table><tr><td><![endif]-->
 							<div class="select_sub show">
@@ -320,7 +320,7 @@
 
 					<div class="nav-divider">&nbsp;</div>
 
-					<ul class="select">
+					<ul  class="current">
 						<li><a href="<%=basePath%>commentAction?action=all"><b>报告</b> <!--[if IE 7]><!-->
 						</a> <!--<![endif]--> <!--[if lte IE 6]><table><tr><td><![endif]-->
 							<div class="select_sub">
@@ -363,7 +363,7 @@
 
 			<!--  start page-heading -->
 			<div id="page-heading">
-				<h1>所有产品</h1>
+				<h1>报告</h1>
 			</div>
 			<!-- end page-heading -->
 
@@ -396,11 +396,8 @@
 									<table border="0" width="100%" cellpadding="0" cellspacing="0"
 										id="product-table">
 										<tr>
-											<%--<th class="table-header-check"><a id="toggle-all"></a>
-											</th>
-											--%>
 											<th class="table-header-repeat line-left minwidth-1"><a
-												href="#">编号</a></th>
+												href="#">排名</a></th>
 											<th class="table-header-repeat line-left minwidth-1"><a
 												href="#">生产商</a>
 											</th>
@@ -414,8 +411,10 @@
 											</th>
 											<th class="table-header-options line-left"><a href="#">产品描述</a>
 											</th>
-											<th class="table-header-options line-left"><a href="#">操作</a>
+											 <th class="table-header-options line-left"><a href="#">综合分数</a>
 											</th>
+											<!-- <th class="table-header-options line-left"><a href="#">操作</a>
+											</th> -->
 										</tr>
 										<%
 											List<Product> datas = (List<Product>) request.getAttribute("datas");
@@ -427,32 +426,28 @@
 										<%
 											} else {
 												int i = 0;
+												int j = 1;
 												for (Product p : datas) {
-
+			
 													if (i % 2 != 0) {
 										%>
 										<tr>
-											<td><%=p.getPrdctCode()%></td>
+											<td><%=j%></td>
 											<td><%=p.getCpnName()%></td>
 											<td><%=p.getPrdctTypeName()%></td>
 											<td><%=p.getPrdctName()%></td>
-											<td><img src="<%=basePath%><%=p.getPrdctPath()%>"></img>
+											<td><img src="<%=basePath%><%=p.getPrdctPath()%>" width="120px" height="80px"></img>
 											</td>
 											<td><%=p.getPrdctParam()%></td>
 											<td><%=p.getPrdctIntro()%></td>
-											<td class="options-width"><a href="#" title="Edit"
-												class="icon-1 info-tooltip"></a> <a
-												href="productAction?action=delete&pid=<%=p.getPrdctCode()%>"
-												title="Delete" class="icon-2 info-tooltip"></a> <!-- <a href="" title="Edit"
-												class="icon-3 info-tooltip"></a> <a href="" title="Edit"
-												class="icon-4 info-tooltip"></a> <a href="" title="Edit"
-												class="icon-5 info-tooltip"></a> --></td>
+											<td><%=p.getStarCore()%></td>
+											
 										</tr>
 										<%
 											} else {
 										%>
 										<tr class="alternate-row">
-											<td><%=p.getPrdctCode()%></td>
+											<td><%=j%></td>
 											<td><%=p.getCpnName()%></td>
 											<td><%=p.getPrdctTypeName()%></td>
 											<td><%=p.getPrdctName()%></td>
@@ -461,18 +456,21 @@
 											</td>
 											<td><%=p.getPrdctParam()%></td>
 											<td><%=p.getPrdctIntro()%></td>
-											<td class="options-width"><a href="#" title="Edit"
+											<td><%=p.getStarCore()%></td>
+											
+											<%-- <td class="options-width"><a href="#" title="Edit"
 												class="icon-1 info-tooltip"></a> <a
 												href="productAction?action=delete&pid=<%=p.getPrdctCode()%>"
 												title="Delete" class="icon-2 info-tooltip"></a> <!-- <a href="" title="Edit"
 												class="icon-3 info-tooltip"></a> <a href="" title="Edit"
 												class="icon-4 info-tooltip"></a> <a href="" title="Edit"
-												class="icon-5 info-tooltip"></a>
- --></td>
+												class="icon-5 info-tooltip"></a> 
+ --></td>--%>
 										</tr>
 										<%
 											}
 													i += 2;
+													j ++;
 												}
 											}
 										%>

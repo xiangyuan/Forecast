@@ -283,13 +283,13 @@
 		-->
 
 					<ul class="select">
-						<li><a href="#nogo"><b>产品</b> <!--[if IE 7]><!--> </a> <!--<![endif]-->
+						<li><a href="<%=basePath%>productAction?action=all"><b>产品</b> <!--[if IE 7]><!--> </a> <!--<![endif]-->
 							<!--[if lte IE 6]><table><tr><td><![endif]-->
 							<div class="select_sub show">
 								<ul class="sub">
 									<li><a href="<%=basePath%>productAction?action=all">查看所有产品</a>
 									</li>
-									<li><a href="#nogo">添加产品</a></li>
+									<li><a href="<%=basePath%>productAction?action=add">添加产品</a></li>
 								</ul>
 							</div> <!--[if lte IE 6]></td></tr></table></a><![endif]-->
 						</li>
@@ -298,7 +298,7 @@
 					<div class="nav-divider">&nbsp;</div>
 
 					<ul class="current">
-						<li><a href="#nogo"><b>评价任务</b> <!--[if IE 7]><!--> </a> <!--<![endif]-->
+						<li><a href="Show_evaluate.jsp"><b>查看评价任务</b> <!--[if IE 7]><!--> </a> <!--<![endif]-->
 							<!--[if lte IE 6]><table><tr><td><![endif]-->
 							<div class="select_sub show">
 								<ul class="sub">
@@ -313,31 +313,27 @@
 					<div class="nav-divider">&nbsp;</div>
 
 					<ul class="select">
-						<li><a href="#nogo"><b>综合评测</b> <!--[if IE 7]><!--> </a> <!--<![endif]-->
-							<!--[if lte IE 6]><table><tr><td><![endif]-->
-							<div class="select_sub">
+						<li><a href="<%=basePath%>commentAction"><b>综合评测</b> <!--[if IE 7]><!--> </a> <!--<![endif]-->
+						<div class="select_sub">
 								<ul class="sub">
-									<li><a href="#nogo">Clients Details 1</a></li>
-									<li><a href="#nogo">Clients Details 2</a></li>
-									<li><a href="#nogo">Clients Details 3</a></li>
-
+									<li><a href="#"></a></li>
+									<li><a href="#"></a></li>
 								</ul>
-							</div> <!--[if lte IE 6]></td></tr></table></a><![endif]-->
+							</div>
 						</li>
 					</ul>
 
 					<div class="nav-divider">&nbsp;</div>
 
 					<ul class="select">
-						<li><a href="#nogo"><b>报告<b> <!--[if IE 7]><!-->
+						<li><a href="<%=basePath%>commentAction?action=all"><b>报告</b> <!--[if IE 7]><!-->
 						</a> <!--<![endif]--> <!--[if lte IE 6]><table><tr><td><![endif]-->
-							<div class="select_sub">
+						<div class="select_sub">
 								<ul class="sub">
-									<li><a href="#nogo">News details 1</a></li>
-									<li><a href="#nogo">News details 2</a></li>
-									<li><a href="#nogo">News details 3</a></li>
+									<li><a href="#"></a></li>
+									<li><a href="#"></a></li>
 								</ul>
-							</div> <!--[if lte IE 6]></td></tr></table></a><![endif]-->
+							</div>
 						</li>
 					</ul>
 					<div class="nav-divider">&nbsp;</div>

@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ page import="org.iblogger.model.*"%>
+
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -8,11 +9,22 @@
 
 	//String currentUser = session.getAttribute("UserId").toString();
 %>
+
+<%@ page language="java" import="java.util.*,java.sql.*"%>
+<%@ page language="java" import="org.iblogger.utils.Dbutils"%>
+
+<%
+	//取得产品类型
+	Connection conn = Dbutils.getConn();
+	PreparedStatement ps = conn
+	.prepareStatement("SELECT PRDCTTYPECODE, PRDCTTYPENAME FROM PRODUCTTYPE");
+	ResultSet rs = ps.executeQuery();
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>系统主页</title>
+<title>添加产品</title>
 <link rel="stylesheet" href="css/screen.css" type="text/css"
 	media="screen" title="default" />
 <!--[if IE]>
@@ -37,6 +49,7 @@
 	});
 </script>
 
+
 <![if !IE 7]>
 
 <!--  styled select box script version 1 -->
@@ -51,6 +64,7 @@
 
 
 <![endif]>
+
 
 <!--  styled select box script version 2 -->
 <script src="js/jquery/jquery.selectbox-0.5_style_2.js"
@@ -82,12 +96,27 @@
 <script type="text/javascript" charset="utf-8">
 	$(function() {
 		$("input.file_1").filestyle({
-			image : "images/forms/choose-file.gif",
-			imageheight : 21,
+			image : "images/forms/upload_file.gif",
+			imageheight : 29,
 			imagewidth : 78,
-			width : 310
+			width : 300
 		});
 	});
+
+	function eval_submit() {
+		var evaluateName = document.getElementById("evaluateName").value;
+		if (evaluateName.length <= 0) {
+			alert("评价任务名称不能为空.");
+			return false;
+		}
+
+		var evaluateMSG = document.getElementById("evaluateMSG").value;
+		if (evaluateMSG.length <= 0) {
+			alert("描述信息不能为空.");
+			return false;
+		}
+		document.addEvaluate.submit();
+	}
 </script>
 
 <!-- Custom jquery scripts -->
@@ -109,7 +138,6 @@
 		});
 	});
 </script>
-
 
 <!--  date picker script -->
 <link rel="stylesheet" href="css/datePicker.css" type="text/css" />
@@ -185,27 +213,6 @@
 			</div>
 			<!-- end logo -->
 
-			<!--  start top-search -->
-			<!-- <div id="top-search">
-		<table border="0" cellpadding="0" cellspacing="0">
-		<tr>
-		<td><input type="text" value="Search" onblur="if (this.value=='') { this.value='Search'; }" onfocus="if (this.value=='Search') { this.value=''; }" class="top-search-inp" /></td>
-		<td>
-		<select  class="styledselect">
-			<option value=""> All</option>
-			<option value=""> Products</option>
-			<option value=""> Categories</option>
-			<option value="">Clients</option>
-			<option value="">News</option>
-		</select> 
-		</td>
-		<td>
-		<input type="image" src="images/shared/top_search_btn.gif"  />
-		</td>
-		</tr>
-		</table>
-	</div> -->
-			<!--  end top-search -->
 			<div class="clear"></div>
 
 		</div>
@@ -225,7 +232,7 @@
 			<div id="nav-right">
 
 				<div class="nav-divider">&nbsp;</div>
-				<a href="userAction?action=logout" id="logout"><img
+				<a href="" id="logout"><img
 					src="images/shared/nav/nav_logout.gif" width="64" height="14"
 					alt="" /> </a>
 				<div class="clear">&nbsp;</div>
@@ -275,12 +282,12 @@
 		</ul>
 		-->
 
-					<ul class="current">
-						<li><a href="<%=basePath%>productAction?action=all"><b>产品</b> <!--[if IE 7]><!--> </a> <!--<![endif]-->
-							<!--[if lte IE 6]><table><tr><td><![endif]-->
+					<ul class="select">
+						<li><a href="<%=basePath%>productAction?action=all"><b>产品</b>
+								<!--[if IE 7]><!--> </a> <!--<![endif]--> <!--[if lte IE 6]><table><tr><td><![endif]-->
 							<div class="select_sub show">
 								<ul class="sub">
-									<li class="sub_show"><a href="<%=basePath%>productAction?action=all">查看所有产品</a>
+									<li><a href="<%=basePath%>productAction?action=all">查看所有产品</a>
 									</li>
 									<li><a href="<%=basePath%>productAction?action=add">添加产品</a>
 									</li>
@@ -291,13 +298,13 @@
 					<div class="nav-divider">&nbsp;</div>
 
 					<ul class="select">
-						<li><a href="Show_evaluate.jsp"><b>评价任务</b> <!--[if IE 7]><!-->
+						<li><a href="Show_evaluate.jsp"><b>查看评价任务</b> <!--[if IE 7]><!-->
 						</a> <!--<![endif]--> <!--[if lte IE 6]><table><tr><td><![endif]-->
-							<div class="select_sub">
+							<div class="select_sub show">
 								<ul class="sub">
 									<li><a href="Show_evaluate.jsp">评价任务</a>
 									</li>
-									<li><a href="addtask.jsp">创建评价任务</a>
+									<li class="sub_show"><a href="add_evaluate.jsp">创建评价任务</a>
 									</li>
 								</ul>
 							</div> <!--[if lte IE 6]></td></tr></table></a><![endif]--></li>
@@ -305,9 +312,8 @@
 
 					<div class="nav-divider">&nbsp;</div>
 
-					<ul class="select">
-						<li><a href="<%=basePath%>commentAction"><b>综合评测</b> <!--[if IE 7]><!--> </a> <!--<![endif]-->
-							<!--[if lte IE 6]><table><tr><td><![endif]-->
+					<ul class="current">
+						<li><a href="#nogo"><b>综合评测</b> <!--[if IE 7]><!--> </a> <!--<![endif]-->
 							<div class="select_sub">
 								<ul class="sub">
 									<li><a href="#"></a>
@@ -321,8 +327,8 @@
 					<div class="nav-divider">&nbsp;</div>
 
 					<ul class="select">
-						<li><a href="<%=basePath%>commentAction?action=all"><b>报告</b> <!--[if IE 7]><!-->
-						</a> <!--<![endif]--> <!--[if lte IE 6]><table><tr><td><![endif]-->
+						<li><a href="<%=basePath%>commentAction?action=all"><b>报告</b> <!--[if IE 7]><!--> </a> <!--<![endif]-->
+							<!--[if lte IE 6]><table><tr><td><![endif]-->
 							<div class="select_sub">
 								<ul class="sub">
 									<li><a href="#"></a>
@@ -335,7 +341,7 @@
 					<div class="nav-divider">&nbsp;</div>
 					<%
 						User user = (User) request.getSession().getAttribute("user");
-						String t = user == null ? "" : user.getUserName();
+						String t = user == null ? " " : user.getUserName();
 					%>
 					<ul class="select">
 						<li><a href="#nogo"><b>用户:<%=t%><b> <!--[if IE 7]><!-->
@@ -356,167 +362,151 @@
 
 	<div class="clear"></div>
 
-	<!-- start content-outer ........................................................................................................................START -->
+	<!-- start content-outer -->
 	<div id="content-outer">
 		<!-- start content -->
 		<div id="content">
 
-			<!--  start page-heading -->
+
 			<div id="page-heading">
-				<h1>所有产品</h1>
+				<h1>对产品评价</h1>
 			</div>
-			<!-- end page-heading -->
+
 
 			<table border="0" width="100%" cellpadding="0" cellspacing="0"
 				id="content-table">
 				<tr>
 					<th rowspan="3" class="sized"><img
 						src="images/shared/side_shadowleft.jpg" width="20" height="300"
-						alt="" />
-					</th>
+						alt="" /></th>
 					<th class="topleft"></th>
 					<td id="tbl-border-top">&nbsp;</td>
 					<th class="topright"></th>
 					<th rowspan="3" class="sized"><img
 						src="images/shared/side_shadowright.jpg" width="20" height="300"
-						alt="" />
-					</th>
+						alt="" /></th>
 				</tr>
 				<tr>
 					<td id="tbl-border-left"></td>
 					<td>
-						<!--  start content-table-inner ...................................................................... START -->
+						<!--  start content-table-inner -->
 						<div id="content-table-inner">
 
-							<!--  start table-content  -->
-							<div id="table-content">
-
-								<!--  start product-table ..................................................................................... -->
-								<form id="mainform" action="">
-									<table border="0" width="100%" cellpadding="0" cellspacing="0"
-										id="product-table">
-										<tr>
-											<%--<th class="table-header-check"><a id="toggle-all"></a>
-											</th>
-											--%>
-											<th class="table-header-repeat line-left minwidth-1"><a
-												href="#">编号</a></th>
-											<th class="table-header-repeat line-left minwidth-1"><a
-												href="#">生产商</a>
-											</th>
-											<th class="table-header-repeat line-left minwidth-1"><a
-												href="#">产品类型</a></th>
-											<th class="table-header-repeat line-left minwidth-1"><a
-												href="#">产品名称</a></th>
-											<th class="table-header-repeat line-left minwidth-1"><a
-												href="#">产品图片</a></th>
-											<th class="table-header-options line-left"><a href="#">产品参数</a>
-											</th>
-											<th class="table-header-options line-left"><a href="#">产品描述</a>
-											</th>
-											<th class="table-header-options line-left"><a href="#">操作</a>
-											</th>
-										</tr>
-										<%
-											List<Product> datas = (List<Product>) request.getAttribute("datas");
-											if (datas == null || datas.size() == 0) {
-										%>
-										<tr>
-											<td>没有产品信息</td>
-										</tr>
-										<%
-											} else {
-												int i = 0;
-												for (Product p : datas) {
-
-													if (i % 2 != 0) {
-										%>
-										<tr>
-											<td><%=p.getPrdctCode()%></td>
-											<td><%=p.getCpnName()%></td>
-											<td><%=p.getPrdctTypeName()%></td>
-											<td><%=p.getPrdctName()%></td>
-											<td><img src="<%=basePath%><%=p.getPrdctPath()%>"></img>
-											</td>
-											<td><%=p.getPrdctParam()%></td>
-											<td><%=p.getPrdctIntro()%></td>
-											<td class="options-width"><a href="#" title="Edit"
-												class="icon-1 info-tooltip"></a> <a
-												href="productAction?action=delete&pid=<%=p.getPrdctCode()%>"
-												title="Delete" class="icon-2 info-tooltip"></a> <!-- <a href="" title="Edit"
-												class="icon-3 info-tooltip"></a> <a href="" title="Edit"
-												class="icon-4 info-tooltip"></a> <a href="" title="Edit"
-												class="icon-5 info-tooltip"></a> --></td>
-										</tr>
-										<%
-											} else {
-										%>
-										<tr class="alternate-row">
-											<td><%=p.getPrdctCode()%></td>
-											<td><%=p.getCpnName()%></td>
-											<td><%=p.getPrdctTypeName()%></td>
-											<td><%=p.getPrdctName()%></td>
-											<td><img src="<%=basePath%><%=p.getPrdctPath()%>"
-												width="120px" height="80px"></img>
-											</td>
-											<td><%=p.getPrdctParam()%></td>
-											<td><%=p.getPrdctIntro()%></td>
-											<td class="options-width"><a href="#" title="Edit"
-												class="icon-1 info-tooltip"></a> <a
-												href="productAction?action=delete&pid=<%=p.getPrdctCode()%>"
-												title="Delete" class="icon-2 info-tooltip"></a> <!-- <a href="" title="Edit"
-												class="icon-3 info-tooltip"></a> <a href="" title="Edit"
-												class="icon-4 info-tooltip"></a> <a href="" title="Edit"
-												class="icon-5 info-tooltip"></a>
- --></td>
-										</tr>
-										<%
-											}
-													i += 2;
-												}
-											}
-										%>
-									</table>
-									<!--  end product-table................................... -->
-								</form>
-							</div>
-							<!--  end content-table  -->
-
-							<!--  start actions-box ............................................... -->
-							<%--<div id="actions-box">
-								<a href="" class="action-slider"></a>
-								<div id="actions-box-slider">
-									<a href="" class="action-edit">Edit</a> <a href=""
-										class="action-delete">Delete</a>
-								</div>
-								<div class="clear"></div>
-							</div>
-							--%>
-							<!-- end actions-box........... -->
-
-							<!--  start paging..................................................... -->
-							<table border="0" cellpadding="0" cellspacing="0"
-								id="paging-table">
+							<table border="0" width="100%" cellpadding="0" cellspacing="0">
+								<tr valign="top">
+									<td>
+										<!--  start step-holder -->
+										<div id="step-holder">
+											<div class="step-no">1</div>
+											<div class="step-dark-left">
+												<a href="#"></a>
+											</div>
+											<div class="step-dark-right">&nbsp;</div>
+											<div class="step-no-off">2</div>
+											<div class="step-light-left"></div>
+											<div class="step-light-right">&nbsp;</div>
+											<div class="step-no-off">3</div>
+											<div class="step-light-left"></div>
+											<div class="step-light-round">&nbsp;</div>
+											<div class="clear"></div>
+										</div> <!--  end step-holder --> <!-- start id-form -->
+										<form action="commentAction?action=add" id="commentAction"
+											name="commentAction" method="post">
+											<table border="0" cellpadding="0" cellspacing="0"
+												id="id-form">
+												<tr>
+													<th valign="top">选择产品:</th>
+													<td><select name="prdctId">
+															<%
+																List<Product> datas = (List<Product>) request.getAttribute("datas");
+																if (datas != null) {
+																	for (Product p : datas) {
+															%>
+															<option value="<%=p.getPrdctCode()%>"><%=p.getPrdctName()%></option>
+															<%
+																}
+																}
+															%>
+													</select></td>
+													<td></td>
+												</tr>
+												<tr>
+													<th valign="top">功能评分:</th>
+													<td><select name="functionNum"
+														class="styledselect_form_1">
+															<option value="1">1</option>
+															<option value="2">2</option>
+															<option value="3">3</option>
+															<option value="4">4</option>
+															<option value="5">5</option>
+													</select>
+													</td>
+												</tr>
+												<tr>
+													<th valign="top">界面评分:</th>
+													<td><select name="uiNum" class="styledselect_form_1">
+															<option value="1">1</option>
+															<option value="2">2</option>
+															<option value="3">3</option>
+															<option value="4">4</option>
+															<option value="5">5</option>
+													</select>
+													</td>
+												</tr>
+												<tr>
+													<th valign="top">性能评分:</th>
+													<td><select name="memoryNum"
+														class="styledselect_form_1">
+															<option value="1">1</option>
+															<option value="2">2</option>
+															<option value="3">3</option>
+															<option value="4">4</option>
+															<option value="5">5</option>
+													</select>
+													</td>
+												</tr>
+												<tr>
+													<th valign="top">用户体验评分:</th>
+													<td><select name="ueNum" class="styledselect_form_1">
+															<option value="1">1</option>
+															<option value="2">2</option>
+															<option value="3">3</option>
+															<option value="4">4</option>
+															<option value="5">5</option>
+													</select>
+													</td>
+												</tr>
+												<!-- <tr>
+												<th valign="top">简要介绍:</th>
+												<td><input type="text" class="inp-form-error" /></td>
+												<td>
+													<div class="error-left"></div>
+													<div class="error-inner">This field is required.</div>
+												</td>
+											</tr> -->
+												<tr>
+													<th>&nbsp;</th>
+													<td valign="top"><input type="submit" value="submit" class="form-submit" /> <input
+														type="reset" value="" class="form-reset" />
+													</td>
+													<td></td>
+												</tr>
+											</table>
+										</form> <!-- end id-form  -->
+									</td>
+									<td></td>
+								</tr>
 								<tr>
-									<td><a href="" class="page-far-left"></a> <a href=""
-										class="page-left"></a>
-										<div id="page-info">
-											Page <strong>1</strong> / 15
-										</div> <a href="" class="page-right"></a> <a href=""
-										class="page-far-right"></a></td>
-									<td><select class="styledselect_pages">
-											<option value="">Number of rows</option>
-											<option value="">1</option>
-											<option value="">2</option>
-											<option value="">3</option>
-									</select></td>
+									<td><img src="images/shared/blank.gif" width="695"
+										height="1" alt="blank" /></td>
+									<td></td>
 								</tr>
 							</table>
-							<!--  end paging................ -->
 
 							<div class="clear"></div>
 
-						</div> <!--  end content-table-inner ............................................END  -->
+
+						</div> <!--  end content-table-inner  -->
 					</td>
 					<td id="tbl-border-right"></td>
 				</tr>
@@ -532,7 +522,9 @@
 		<!--  end content -->
 		<div class="clear">&nbsp;</div>
 	</div>
-	<!--  end content-outer........................................................END -->
+	<!--  end content-outer -->
+
+
 
 	<div class="clear">&nbsp;</div>
 
@@ -540,9 +532,7 @@
 	<div id="footer">
 		<!--  start footer-left -->
 		<div id="footer-left">
-
-			Love &copy; For YY. <span id="spanYear"></span> <a href="#">System</a>.
-			版权保护.
+			ForYY &copy; . <a href="">产品评估系统</a>. All rights reserved.
 		</div>
 		<!--  end footer-left -->
 		<div class="clear">&nbsp;</div>
@@ -551,3 +541,8 @@
 
 </body>
 </html>
+<%
+	rs = null;
+	ps = null;
+	conn = null;
+%>

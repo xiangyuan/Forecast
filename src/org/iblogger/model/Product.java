@@ -39,6 +39,16 @@ public class Product {
 	private String prdctIntro;//产品简介 
 	
 	private String postTime;//发布时间 
+	
+	private String starCore;
+
+	public String getStarCore() {
+		return starCore;
+	}
+
+	public void setStarCore(String starCore) {
+		this.starCore = starCore;
+	}
 
 	public int getPrdctCode() {
 		return prdctCode;

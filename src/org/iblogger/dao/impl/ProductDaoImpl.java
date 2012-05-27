@@ -337,4 +337,64 @@ public class ProductDaoImpl implements ProductDao {
 		}
 		return (datas);
 	}
+
+	@Override
+	public List<Product> getResultProduct() {
+		Connection conn = null;
+		PreparedStatement ptmt = null;
+		ResultSet rs = null;
+		List<Product> datas = null;
+		try {
+			conn = Dbutils.getConn();
+			String sql = "select * from (select p.PrdctCode,p.PrdctSequence,p.PrdctName,p.PrdctPara,p.PrdctPicturePath,p.PrdctModel,p.PrdctIntro,c.cpnName,pt.PrdctTypeName from Product p,Company c,ProductType pt where p.CpnCode = c.cid and p.PrdctKindCode = pt.PrdctTypeCode) t,FactorCharacter fc where PrdctCode = fc.PrdctTypeCode order by StandardizeWay desc";
+			ptmt = Dbutils.getPtmt(conn, sql);
+
+			rs = ptmt.executeQuery();
+
+			if (rs != null) {
+				Product p = null;
+				datas = new ArrayList<Product>();
+				while (rs.next()) {
+					p = new Product();
+					p.setPrdctCode(rs.getInt("PrdctCode"));
+					p.setPrdctSeq(rs.getInt("PrdctSequence"));
+					p.setPrdctName(rs.getString("PrdctName"));
+					p.setPrdctModel(rs.getString("PrdctModel"));
+					p.setPrdctParam(rs.getString("PrdctPara"));
+					p.setPrdctPath(rs.getString("PrdctPicturePath"));
+					p.setPrdctIntro(rs.getString("PrdctIntro"));
+					p.setCpnName(rs.getString("cpnName"));
+					p.setPrdctTypeName(rs.getString("PrdctTypeName"));
+					p.setStarCore(String.valueOf(rs.getFloat("StandardizeWay")));
+					datas.add(p);
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			// throw new DaoException("查找用户出现异常");
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (ptmt != null) {
+				try {
+					ptmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (conn != null) {
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return (datas);
+	}
 }

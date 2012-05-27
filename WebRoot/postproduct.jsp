@@ -256,61 +256,61 @@
 		-->
 
 					<ul class="current">
-						<li><a href="#nogo"><b>产品</b> <!--[if IE 7]><!--> </a> <!--<![endif]-->
-							<!--[if lte IE 6]><table><tr><td><![endif]-->
+						<li><a href="<%=basePath%>productAction?action=all"><b>产品</b>
+								<!--[if IE 7]><!--> </a> <!--<![endif]--> <!--[if lte IE 6]><table><tr><td><![endif]-->
 							<div class="select_sub show">
 								<ul class="sub">
 									<li><a href="<%=basePath%>productAction?action=all">查看所有产品</a>
 									</li>
-									<li class="sub_show"><a href="#nogo">添加产品</a></li>
+									<li class="sub_show"><a
+										href="<%=basePath%>productAction?action=add">添加产品</a>
+									</li>
 								</ul>
-							</div> <!--[if lte IE 6]></td></tr></table></a><![endif]-->
-						</li>
+							</div> <!--[if lte IE 6]></td></tr></table></a><![endif]--></li>
 					</ul>
 
 					<div class="nav-divider">&nbsp;</div>
 
 					<ul class="select">
-						<li><a href="#nogo"><b>评价任务</b> <!--[if IE 7]><!--> </a> <!--<![endif]-->
-							<!--[if lte IE 6]><table><tr><td><![endif]-->
-							<div class="select_sub">
-								<ul class="sub">
-									<li><a href="Show_evaluate.jsp">评价任务</a></li>
-									<li><a href="addtask.jsp">创建评价任务</a></li>
-								</ul>								
-							</div> <!--[if lte IE 6]></td></tr></table></a><![endif]-->
-						</li>
-					</ul>
-
-					<div class="nav-divider">&nbsp;</div>
-
-					<ul class="select">
-						<li><a href="#nogo"><b>综合评测</b> <!--[if IE 7]><!--> </a> <!--<![endif]-->
-							<!--[if lte IE 6]><table><tr><td><![endif]-->
-							<div class="select_sub">
-								<ul class="sub">
-									<li><a href="#nogo">Clients Details 1</a></li>
-									<li><a href="#nogo">Clients Details 2</a></li>
-									<li><a href="#nogo">Clients Details 3</a></li>
-
-								</ul>
-							</div> <!--[if lte IE 6]></td></tr></table></a><![endif]-->
-						</li>
-					</ul>
-
-					<div class="nav-divider">&nbsp;</div>
-
-					<ul class="select">
-						<li><a href="#nogo"><b>报告<b> <!--[if IE 7]><!-->
+						<li><a href="Show_evaluate.jsp"><b>评价任务</b> <!--[if IE 7]><!-->
 						</a> <!--<![endif]--> <!--[if lte IE 6]><table><tr><td><![endif]-->
 							<div class="select_sub">
 								<ul class="sub">
-									<li><a href="#nogo">News details 1</a></li>
-									<li><a href="#nogo">News details 2</a></li>
-									<li><a href="#nogo">News details 3</a></li>
+									<li><a href="Show_evaluate.jsp">评价任务</a>
+									</li>
+									<li><a href="addtask.jsp">创建评价任务</a>
+									</li>
 								</ul>
-							</div> <!--[if lte IE 6]></td></tr></table></a><![endif]-->
-						</li>
+							</div> <!--[if lte IE 6]></td></tr></table></a><![endif]--></li>
+					</ul>
+
+					<div class="nav-divider">&nbsp;</div>
+
+					<ul class="select">
+						<li><a href="<%=basePath%>commentAction"><b>综合评测</b> <!--[if IE 7]><!--> </a> <!--<![endif]-->
+							<div class="select_sub">
+								<ul class="sub">
+									<li><a href="#"></a>
+									</li>
+									<li><a href="#"></a>
+									</li>
+								</ul>
+							</div></li>
+					</ul>
+
+					<div class="nav-divider">&nbsp;</div>
+
+					<ul class="select">
+						<li><a href="<%=basePath%>commentAction?action=all"><b>报告</b> <!--[if IE 7]><!--> </a> <!--<![endif]-->
+							<!--[if lte IE 6]><table><tr><td><![endif]-->
+							<div class="select_sub">
+								<ul class="sub">
+									<li><a href="#"></a>
+									</li>
+									<li><a href="#"></a>
+									</li>
+								</ul>
+							</div></li>
 					</ul>
 					<div class="nav-divider">&nbsp;</div>
 					<%
@@ -319,8 +319,7 @@
 					%>
 					<ul class="select">
 						<li><a href="#nogo"><b>用户:<%=t%><b> <!--[if IE 7]><!-->
-						</a> <!--<![endif]--> <!--[if lte IE 6]><table><tr><td><![endif]-->
-						</li>
+						</a> <!--<![endif]--> <!--[if lte IE 6]><table><tr><td><![endif]--></li>
 					</ul>
 
 					<div class="clear"></div>
@@ -353,15 +352,13 @@
 				<tr>
 					<th rowspan="3" class="sized"><img
 						src="images/shared/side_shadowleft.jpg" width="20" height="300"
-						alt="" />
-					</th>
+						alt="" /></th>
 					<th class="topleft"></th>
 					<td id="tbl-border-top">&nbsp;</td>
 					<th class="topright"></th>
 					<th rowspan="3" class="sized"><img
 						src="images/shared/side_shadowright.jpg" width="20" height="300"
-						alt="" />
-					</th>
+						alt="" /></th>
 				</tr>
 				<tr>
 					<td id="tbl-border-left"></td>
@@ -426,7 +423,8 @@
 															<option value="3">3</option>
 															<option value="4">4</option>
 															<option value="5">5</option>
-													</select></td>
+													</select>
+													</td>
 													<td></td>
 												</tr>
 												<tr>
@@ -442,8 +440,7 @@
 																}
 																}
 															%>
-													</select>
-													</td>
+													</select></td>
 													<td></td>
 												</tr>
 												<tr>
@@ -462,41 +459,43 @@
 																}
 															%>
 
-													</select></td>
+													</select>
+													</td>
 													<td></td>
 												</tr>
 												<tr>
 													<th valign="top">商品信息简介:</th>
 													<td><textarea name="descrip" rows="" cols=""
-															class="form-textarea"></textarea>
-													</td>
+															class="form-textarea"></textarea></td>
 													<td></td>
 												</tr>
 												<tr>
 													<th>图片:</th>
-													<td><input name="uploadFile" type="file" class="file_1" />
-													</td>
+													<td><input name="uploadFile" type="file"
+														class="file_1" /></td>
 													<td>
 														<div class="bubble-left"></div>
 														<div class="bubble-inner">JPEG, GIF 5MB max per
 															image</div>
-														<div class="bubble-right"></div></td>
+														<div class="bubble-right"></div>
+													</td>
 												</tr>
 												<tr>
 													<th>&nbsp;</th>
 													<td valign="top"><input type="submit" value="submit"
 														class="form-submit" /> <input type="reset" value=""
-														class="form-reset" /></td>
+														class="form-reset" />
+													</td>
 													<td></td>
 												</tr>
 											</table>
-										</form> <!-- end id-form  --></td>
+										</form> <!-- end id-form  -->
+									</td>
 									<td></td>
 								</tr>
 								<tr>
 									<td><img src="images/shared/blank.gif" width="695"
-										height="1" alt="blank" />
-									</td>
+										height="1" alt="blank" /></td>
 									<td></td>
 								</tr>
 							</table>
@@ -504,7 +503,8 @@
 							<div class="clear"></div>
 
 
-						</div> <!--  end content-table-inner  --></td>
+						</div> <!--  end content-table-inner  -->
+					</td>
 					<td id="tbl-border-right"></td>
 				</tr>
 				<tr>
