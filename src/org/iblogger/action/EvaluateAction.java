@@ -38,8 +38,7 @@ public class EvaluateAction extends HttpServlet {
 		if(method.compareTo("ADD") == 0) {
 			boolean falg = this.addEvaluate(req, resp);
 			if(falg) {
-				resp.setContentType("text/html;charset=UTF-8"); 
-				resp.getWriter().write("操作成功.");
+				resp.sendRedirect("Show_evaluate.jsp");
 			}
 		}else if(method.compareTo("del") == 0) {
 			int code = Integer.parseInt(req.getParameter("task_id"));

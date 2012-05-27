@@ -295,7 +295,7 @@
 							<div class="select_sub">
 								<ul class="sub">
 									<li><a href="Show_evaluate.jsp">评价任务</a></li>
-									<li><a href="add_evaluate.jsp">创建评价任务</a></li>
+									<li><a href="addtask.jsp">创建评价任务</a></li>
 								</ul>
 							</div> <!--[if lte IE 6]></td></tr></table></a><![endif]-->
 						</li>

@@ -1,12 +1,24 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ page import="org.iblogger.model.*"%>
+
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
-	+ request.getServerName() + ":" + request.getServerPort()
-	+ path + "/";
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
 
 	//String currentUser = session.getAttribute("UserId").toString();
+%>
+
+<%@ page language="java" import="java.util.*,java.sql.*"%>
+<%@ page language="java" import="org.iblogger.utils.Dbutils"%>
+
+<%
+	//取得产品类型
+	Connection conn = Dbutils.getConn();
+	PreparedStatement ps = conn
+			.prepareStatement("SELECT PRDCTTYPECODE, PRDCTTYPENAME FROM PRODUCTTYPE");
+	ResultSet rs = ps.executeQuery();
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -90,6 +102,21 @@
 			width : 300
 		});
 	});
+
+	function eval_submit() {
+		var evaluateName = document.getElementById("evaluateName").value;
+		if (evaluateName.length <= 0) {
+			alert("评价任务名称不能为空.");
+			return false;
+		}
+
+		var evaluateMSG = document.getElementById("evaluateMSG").value;
+		if (evaluateMSG.length <= 0) {
+			alert("描述信息不能为空.");
+			return false;
+		}
+		document.addEvaluate.submit();
+	}
 </script>
 
 <!-- Custom jquery scripts -->
@@ -255,14 +282,14 @@
 		</ul>
 		-->
 
-					<ul class="current">
+					<ul class="select">
 						<li><a href="#nogo"><b>产品</b> <!--[if IE 7]><!--> </a> <!--<![endif]-->
 							<!--[if lte IE 6]><table><tr><td><![endif]-->
 							<div class="select_sub show">
 								<ul class="sub">
 									<li><a href="<%=basePath%>productAction?action=all">查看所有产品</a>
 									</li>
-									<li class="sub_show"><a href="#nogo">添加产品</a></li>
+									<li><a href="#nogo">添加产品</a></li>
 								</ul>
 							</div> <!--[if lte IE 6]></td></tr></table></a><![endif]-->
 						</li>
@@ -270,14 +297,15 @@
 
 					<div class="nav-divider">&nbsp;</div>
 
-					<ul class="select">
+					<ul class="current">
 						<li><a href="#nogo"><b>评价任务</b> <!--[if IE 7]><!--> </a> <!--<![endif]-->
 							<!--[if lte IE 6]><table><tr><td><![endif]-->
-							<div class="select_sub">
+							<div class="select_sub show">
 								<ul class="sub">
 									<li><a href="Show_evaluate.jsp">评价任务</a></li>
-									<li><a href="addtask.jsp">创建评价任务</a></li>
-								</ul>								
+									<li class="sub_show"><a href="add_evaluate.jsp">创建评价任务</a>
+									</li>
+								</ul>
 							</div> <!--[if lte IE 6]></td></tr></table></a><![endif]-->
 						</li>
 					</ul>
@@ -344,7 +372,7 @@
 
 
 			<div id="page-heading">
-				<h1>添加产品</h1>
+				<h1>创建评价任务</h1>
 			</div>
 
 
@@ -376,36 +404,47 @@
 										<div id="step-holder">
 											<div class="step-no">1</div>
 											<div class="step-dark-left">
-												<a href="">添加产品</a>
+												<a href="创建评价任务"></a>
 											</div>
 											<div class="step-dark-right">&nbsp;</div>
 											<div class="step-no-off">2</div>
-											<div class="step-light-left">Select related products</div>
+											<div class="step-light-left"></div>
 											<div class="step-light-right">&nbsp;</div>
 											<div class="step-no-off">3</div>
-											<div class="step-light-left">Preview</div>
+											<div class="step-light-left"></div>
 											<div class="step-light-round">&nbsp;</div>
 											<div class="clear"></div>
 										</div> <!--  end step-holder --> <!-- start id-form -->
-										<form action="uploadAction" method="post"
-											enctype="multipart/form-data">
+										<form action="addEvaluate" id="addEvaluate" name="addEvaluate"
+											method="post">
+											<input type="hidden" name="method" value="ADD"></input>
 											<table border="0" cellpadding="0" cellspacing="0"
 												id="id-form">
 												<tr>
-													<th valign="top">产品名:</th>
-													<td><input name="pName" type="text" class="inp-form" />
+													<th valign="top">评价任务名称:</th>
+													<td><input id="evaluateName" name="evaluateName"
+														type="text" class="inp-form" />
 													</td>
 													<td></td>
 												</tr>
 												<tr>
-													<th valign="top">产品型号:</th>
-													<td><input name="pModel" type="text" class="inp-form" />
+													<th valign="top">评价相关描述:</th>
+													<td><input id="evaluateMSG" name="evaluateMSG"
+														type="text" class="inp-form" />
 													</td>
 													<td></td>
 												</tr>
 												<tr>
-													<th valign="top">技术参数:</th>
-													<td><input name="pParam" type="text" class="inp-form" />
+													<th valign="top">评价产品类型:</th>
+													<td><select name="prdctType">
+															<%
+																while (rs.next()) {
+															%>
+															<option value="<%=rs.getString(1)%>"><%=rs.getString(2)%></option>
+															<%
+																}
+															%>
+													</select>
 													</td>
 													<td></td>
 												</tr>
@@ -418,75 +457,33 @@
 												</td>
 											</tr> -->
 												<tr>
-													<th valign="top">评分:</th>
-													<td><select name="sequence"
+													<th valign="top">权重够着方法:</th>
+													<td><select name="evalWeightWay"
 														class="styledselect_form_1">
-															<option value="1">1</option>
-															<option value="2">2</option>
-															<option value="3">3</option>
-															<option value="4">4</option>
-															<option value="5">5</option>
+															<option value="1">AHP法</option>
+															<option value="2">DELPHI法</option>
+															<option value="3">直接赋权法</option>
+															<option value="4">逐对比较法</option>
 													</select></td>
 													<td></td>
 												</tr>
 												<tr>
-													<th valign="top">生产商:</th>
-													<td><select name="company" class="styledselect_form_1">
-															<%
-																List<Company> ccs = (List<Company>) request.getAttribute("ccs");
-																if (ccs != null) {
-																	for (Company c : ccs) {
-															%>
-															<option value="<%=c.getId()%>"><%=c.getcName()%></option>
-															<%
-																}
-																}
-															%>
+													<th valign="top">综合评价方法:</th>
+													<td><select name="composeWar"
+														class="styledselect_form_1">
+															<option value="1">加权线性和法</option>
+															<option value="2">理想点法</option>
+															<option value="3">乘积合成法</option>
+															<option value="4">模糊综合评价方法</option>
 													</select>
 													</td>
 													<td></td>
 												</tr>
 												<tr>
-													<th valign="top">产品类别:</th>
-													<td><select name="productType"
-														class="styledselect_form_1">
-															<%
-																List<ProductType> pts = (List<ProductType>) request
-																		.getAttribute("pts");
-																if (ccs != null) {
-																	for (ProductType p : pts) {
-															%>
-															<option value="<%=p.getPrdctCode()%>"><%=p.getPrdctName()%></option>
-															<%
-																}
-																}
-															%>
-
-													</select></td>
-													<td></td>
-												</tr>
-												<tr>
-													<th valign="top">商品信息简介:</th>
-													<td><textarea name="descrip" rows="" cols=""
-															class="form-textarea"></textarea>
-													</td>
-													<td></td>
-												</tr>
-												<tr>
-													<th>图片:</th>
-													<td><input name="uploadFile" type="file" class="file_1" />
-													</td>
-													<td>
-														<div class="bubble-left"></div>
-														<div class="bubble-inner">JPEG, GIF 5MB max per
-															image</div>
-														<div class="bubble-right"></div></td>
-												</tr>
-												<tr>
 													<th>&nbsp;</th>
-													<td valign="top"><input type="submit" value="submit"
-														class="form-submit" /> <input type="reset" value=""
-														class="form-reset" /></td>
+													<td valign="top"><input type="button" value="submit"
+														onclick="eval_submit();" class="form-submit" /> <input
+														type="reset" value="" class="form-reset" /></td>
 													<td></td>
 												</tr>
 											</table>
@@ -538,3 +535,8 @@
 
 </body>
 </html>
+<%
+	rs = null;
+	ps = null;
+	conn = null;
+%>
